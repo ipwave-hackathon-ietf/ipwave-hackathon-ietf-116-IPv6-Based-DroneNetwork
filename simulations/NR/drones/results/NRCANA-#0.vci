@@ -1,0 +1,421 @@
+file 16027 1676898616                                           
+version 3
+run NRCANA-0-20230220-22:02:18-1397284
+attr configname NRCANA
+attr datetime 20230220-22:02:18
+attr datetimef 20230220-220218
+attr experiment NRCANA
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network NRCANANetwork
+attr processid 1397284
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config network NRCANANetwork
+config **.numBands 25
+config **.ueTxPower 26
+config **.eNodeBTxPower 46
+config *.drone[*].cellularNic.nrPhy.dynamicCellAssociation true
+config *.drone[*].masterId 0
+config *.drone[*].macCellId 0
+config *.drone[*].nrMasterId 1
+config *.drone[*].nrMacCellId 1
+config **.gNodeB1.macCellId 1
+config **.gNodeB1.macNodeId 1
+config **.gNodeB2.macCellId 2
+config **.gNodeB2.macNodeId 2
+config *.drone[*].cellularNic.nrPhy.enableHandover true
+config *.gNodeB*.cellularNic.phy.enableHandover true
+config *.gNodeB*.cellularNic.phy.handoverLatency 50ms
+config *.gNodeB*.cellInfo.broadcastMessageInterval 1s
+config *.gNodeB*.numX2Apps 1
+config *.gNodeB*.x2App[*].server.localPort "5000 + ancestorIndex(1)"
+config *.gNodeB1.x2App[0].client.connectAddress "\"gNodeB2%x2ppp0\""
+config *.gNodeB2.x2App[0].client.connectAddress "\"gNodeB1%x2ppp0\""
+config **.sctp.nagleEnabled false
+config **.sctp.enableHeartbeats false
+config *.nbst 4
+config *.numdrones 10
+config **.dst*.mobility.typename StatNodeMob
+config **.dst[0].mobility.initialX 200m
+config **.dst[0].mobility.initialY 100m
+config **.dst[0].mobility.initialZ 0m
+config **.dst[1].mobility.initialX 100m
+config **.dst[1].mobility.initialY 250m
+config **.dst[1].mobility.initialZ 0m
+config **.dst[2].mobility.initialX 160m
+config **.dst[2].mobility.initialY 220m
+config **.dst[2].mobility.initialZ 0m
+config **.dst[3].mobility.initialX 200m
+config **.dst[3].mobility.initialY 330m
+config **.dst[3].mobility.initialZ 0m
+config **.dst[4].mobility.initialX 400m
+config **.dst[4].mobility.initialY 300m
+config **.dst[4].mobility.initialZ 0m
+config **.dst[5].mobility.initialX 400m
+config **.dst[5].mobility.initialY 200m
+config **.dst[5].mobility.initialZ 0m
+config **.dst[*].mobility.initFromDisplayString false
+config **.bstion*.mobility.typename StatNodeMob
+config **.bstion[0].mobility.initialX 200m
+config **.bstion[0].mobility.initialY 20m
+config **.bstion[0].mobility.initialZ 0m
+config **.bstion[1].mobility.initialX 20m
+config **.bstion[1].mobility.initialY 200m
+config **.bstion[1].mobility.initialZ 0m
+config **.bstion[2].mobility.initialX 480m
+config **.bstion[2].mobility.initialY 190m
+config **.bstion[2].mobility.initialZ 0m
+config **.bstion[3].mobility.initialX 200m
+config **.bstion[3].mobility.initialY 380m
+config **.bstion[3].mobility.initialZ 0m
+config **.bstion[*].mobility.initFromDisplayString false
+config **.drone*.mobility.typename DroneNetMob2
+config **.drone*.mobility.ndst 30
+config **.drone*.mobility.initFromDisplayString false
+config **.drone*.mobility.changeInterval "truncnormal(2s, 0.5s)"
+config *.drone[*].mobility.angleDelta "normal(0deg, 30deg)"
+config **.drone*.mobility.speed 5mps
+config **.drone[*].mobility.initFromDisplayString false
+config sim-time-limit 10day
+config debug-on-errors false
+config print-undisposed false
+config **.sctp.**.scalar-recording false
+config **.sctp.**.vector-recording false
+config **.routingRecorder.enabled false
+config *.playgroundSizeX 20000m
+config *.playgroundSizeY 20000m
+config *.playgroundSizeZ 50m
+
+vector 0 NRCANANetwork.drone[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 1 NRCANANetwork.drone[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 2 NRCANANetwork.drone[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 3 NRCANANetwork.drone[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 4 NRCANANetwork.drone[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 5 NRCANANetwork.drone[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 6 NRCANANetwork.drone[2].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 7 NRCANANetwork.drone[2].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 8 NRCANANetwork.drone[2].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 9 NRCANANetwork.drone[3].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 10 NRCANANetwork.drone[3].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 11 NRCANANetwork.drone[3].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 12 NRCANANetwork.drone[4].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 13 NRCANANetwork.drone[4].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 14 NRCANANetwork.drone[4].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 15 NRCANANetwork.drone[5].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 16 NRCANANetwork.drone[5].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 17 NRCANANetwork.drone[5].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 18 NRCANANetwork.drone[6].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 19 NRCANANetwork.drone[6].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 20 NRCANANetwork.drone[6].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 21 NRCANANetwork.drone[7].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 22 NRCANANetwork.drone[7].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 23 NRCANANetwork.drone[7].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 24 NRCANANetwork.drone[8].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 25 NRCANANetwork.drone[8].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 26 NRCANANetwork.drone[8].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 27 NRCANANetwork.drone[9].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 28 NRCANANetwork.drone[9].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 29 NRCANANetwork.drone[9].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 30 NRCANANetwork.server.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 31 NRCANANetwork.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 32 NRCANANetwork.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 33 NRCANANetwork.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 34 NRCANANetwork.router.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 35 NRCANANetwork.router.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 36 NRCANANetwork.upf.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 37 NRCANANetwork.upf.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 38 NRCANANetwork.upf.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 39 NRCANANetwork.upf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 40 NRCANANetwork.upf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 41 NRCANANetwork.upf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 42 NRCANANetwork.gNodeB1.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 43 NRCANANetwork.gNodeB1.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 44 NRCANANetwork.gNodeB1.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 45 NRCANANetwork.gNodeB1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 46 NRCANANetwork.gNodeB1.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 47 NRCANANetwork.gNodeB1.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 48 NRCANANetwork.gNodeB2.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 49 NRCANANetwork.gNodeB2.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 50 NRCANANetwork.gNodeB2.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 51 NRCANANetwork.gNodeB2.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 52 NRCANANetwork.gNodeB2.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 53 NRCANANetwork.gNodeB2.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+0	15550 8 0 0 0 0 1 0 0 0 0
+1	15558 8 0 0 0 0 1 0 0 0 0
+2	15566 8 0 0 0 0 1 0 0 0 0
+3	15574 8 0 0 0 0 1 0 0 0 0
+4	15582 8 0 0 0 0 1 0 0 0 0
+5	15590 8 0 0 0 0 1 0 0 0 0
+6	15598 8 0 0 0 0 1 0 0 0 0
+7	15606 8 0 0 0 0 1 0 0 0 0
+8	15614 8 0 0 0 0 1 0 0 0 0
+9	15622 8 0 0 0 0 1 0 0 0 0
+10	15630 9 0 0 0 0 1 0 0 0 0
+11	15639 9 0 0 0 0 1 0 0 0 0
+12	15648 9 0 0 0 0 1 0 0 0 0
+13	15657 9 0 0 0 0 1 0 0 0 0
+14	15666 9 0 0 0 0 1 0 0 0 0
+15	15675 9 0 0 0 0 1 0 0 0 0
+16	15684 9 0 0 0 0 1 0 0 0 0
+17	15693 9 0 0 0 0 1 0 0 0 0
+18	15702 9 0 0 0 0 1 0 0 0 0
+19	15711 9 0 0 0 0 1 0 0 0 0
+20	15720 9 0 0 0 0 1 0 0 0 0
+21	15729 9 0 0 0 0 1 0 0 0 0
+22	15738 9 0 0 0 0 1 0 0 0 0
+23	15747 9 0 0 0 0 1 0 0 0 0
+24	15756 9 0 0 0 0 1 0 0 0 0
+25	15765 9 0 0 0 0 1 0 0 0 0
+26	15774 9 0 0 0 0 1 0 0 0 0
+27	15783 9 0 0 0 0 1 0 0 0 0
+28	15792 9 0 0 0 0 1 0 0 0 0
+29	15801 9 0 0 0 0 1 0 0 0 0
+30	15810 9 0 0 0 0 1 0 0 0 0
+31	15819 9 0 0 0 0 1 0 0 0 0
+32	15828 9 0 0 0 0 1 0 0 0 0
+33	15837 9 0 0 0 0 1 0 0 0 0
+34	15846 9 0 0 0 0 1 0 0 0 0
+35	15855 9 0 0 0 0 1 0 0 0 0
+36	15864 9 0 0 0 0 1 0 0 0 0
+37	15873 9 0 0 0 0 1 0 0 0 0
+38	15882 9 0 0 0 0 1 0 0 0 0
+39	15891 9 0 0 0 0 1 0 0 0 0
+40	15900 9 0 0 0 0 1 0 0 0 0
+41	15909 9 0 0 0 0 1 0 0 0 0
+42	15918 9 0 0 0 0 1 0 0 0 0
+43	15927 9 0 0 0 0 1 0 0 0 0
+44	15936 9 0 0 0 0 1 0 0 0 0
+45	15945 9 0 0 0 0 1 0 0 0 0
+46	15954 9 0 0 0 0 1 0 0 0 0
+47	15963 9 0 0 0 0 1 0 0 0 0
+48	15972 9 0 0 0 0 1 0 0 0 0
+49	15981 9 0 0 0 0 1 0 0 0 0
+50	15990 9 0 0 0 0 1 0 0 0 0
+51	15999 9 0 0 0 0 1 0 0 0 0
+52	16008 9 0 0 0 0 1 0 0 0 0
+53	16017 9 0 0 0 0 1 0 0 0 0
+

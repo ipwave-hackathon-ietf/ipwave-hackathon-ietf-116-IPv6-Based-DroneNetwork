@@ -1,0 +1,200 @@
+version 3
+run General-0-20230324-10:46:11-394209
+attr configname General
+attr datetime 20230324-10:46:11
+attr datetimef 20230324-104611
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network simu5g.simulations.NR.cars.Highway
+attr processid 394209
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config cmdenv-express-mode true
+config cmdenv-autoflush true
+config image-path ../../images
+config network simu5g.simulations.NR.cars.Highway
+config debug-on-errors false
+config print-undisposed false
+config sim-time-limit 100s
+config **.sctp.**.scalar-recording false
+config **.sctp.**.vector-recording false
+config **.routingRecorder.enabled false
+config *.playgroundSizeX 20000m
+config *.playgroundSizeY 20000m
+config *.playgroundSizeZ 50m
+config *.veinsManager.host "\"localhost\""
+config *.veinsManager.moduleType "\"simu5g.nodes.cars.NRCar\""
+config *.veinsManager.moduleName "\"car\""
+config *.veinsManager.launchConfig "xmldoc(\"heterogeneous.launchd.xml\")"
+config *.veinsManager.updateInterval 0.1s
+config *.car[*].mobility.typename VeinsInetMobility
+config **.numBands 25
+config **.ueTxPower 26
+config **.eNodeBTxPower 46
+config *.car[*].cellularNic.nrPhy.dynamicCellAssociation true
+config *.car[*].masterId 0
+config *.car[*].macCellId 0
+config *.car[*].nrMasterId 1
+config *.car[*].nrMacCellId 1
+config **.gNodeB1.macCellId 1
+config **.gNodeB1.macNodeId 1
+config **.gNodeB2.macCellId 2
+config **.gNodeB2.macNodeId 2
+config *.car[*].cellularNic.nrPhy.enableHandover true
+config *.gNodeB*.cellularNic.phy.enableHandover true
+config *.gNodeB*.cellularNic.phy.handoverLatency 50ms
+config *.gNodeB*.cellInfo.broadcastMessageInterval 1s
+
+vector 0 Highway.server.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 1 Highway.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 2 Highway.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 3 Highway.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 4 Highway.router.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 5 Highway.router.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 6 Highway.upf.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 7 Highway.upf.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 8 Highway.upf.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 9 Highway.upf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 10 Highway.upf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 11 Highway.upf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 12 Highway.gNodeB1.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 13 Highway.gNodeB1.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 14 Highway.gNodeB1.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 15 Highway.gNodeB1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 16 Highway.gNodeB1.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 17 Highway.gNodeB1.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 18 Highway.gNodeB2.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 19 Highway.gNodeB2.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 20 Highway.gNodeB2.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 21 Highway.gNodeB2.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 22 Highway.gNodeB2.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 23 Highway.gNodeB2.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+0	0	0	0
+1	0	0	0
+2	0	0	0
+3	0	0	0
+4	0	0	0
+5	0	0	0
+6	0	0	0
+7	0	0	0
+8	0	0	0
+9	0	0	0
+10	0	0	0
+11	0	0	0
+12	0	0	0
+13	0	0	0
+14	0	0	0
+15	0	0	0
+16	0	0	0
+17	0	0	0
+18	0	0	0
+19	0	0	0
+20	0	0	0
+21	0	0	0
+22	0	0	0
+23	0	0	0
+

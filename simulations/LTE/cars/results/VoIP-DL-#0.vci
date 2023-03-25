@@ -1,0 +1,213 @@
+file 7646 1676019182                                            
+version 3
+run VoIP-DL-0-20230210-17:52:18-901076
+attr configname VoIP-DL
+attr datetime 20230210-17:52:18
+attr datetimef 20230210-175218
+attr experiment VoIP-DL
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network simu5g.simulations.LTE.cars.Highway
+attr processid 901076
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config *.server.numApps 10
+config *.server.app[*].typename VoIPSender
+config *.server.app[*].localPort "3000 + ancestorIndex(0)"
+config *.server.app[*].destAddress "\"car[\" + string(ancestorIndex(0)) + \"]\""
+config *.server.app[*].startTime 0.05s
+config *.car[*].numApps 1
+config *.car[*].app[0].typename VoIPReceiver
+config cmdenv-express-mode true
+config cmdenv-autoflush true
+config image-path ../../images
+config network simu5g.simulations.LTE.cars.Highway
+config debug-on-errors false
+config print-undisposed false
+config sim-time-limit 100s
+config **.sctp.**.scalar-recording false
+config **.sctp.**.vector-recording false
+config **.routingRecorder.enabled false
+config *.playgroundSizeX 20000m
+config *.playgroundSizeY 20000m
+config *.playgroundSizeZ 50m
+config *.veinsManager.host "\"localhost\""
+config *.veinsManager.moduleType "\"simu5g.nodes.cars.Car\""
+config *.veinsManager.moduleName "\"car\""
+config *.veinsManager.launchConfig "xmldoc(\"heterogeneous.launchd.xml\")"
+config *.veinsManager.updateInterval 0.1s
+config *.car[*].mobility.typename VeinsInetMobility
+config *.configurator.config "xmldoc(\"./demo.xml\")"
+config **.numBands 25
+config **.ueTxPower 26
+config **.eNodeBTxPower 46
+config *.car[*].cellularNic.phy.dynamicCellAssociation true
+config **.car[*].masterId 1
+config **.car[*].macCellId 1
+config **.eNodeB1.macCellId 1
+config **.eNodeB1.macNodeId 1
+config **.eNodeB2.macCellId 2
+config **.eNodeB2.macNodeId 2
+config *.car[*].cellularNic.phy.enableHandover true
+config *.eNodeB*.cellularNic.phy.enableHandover true
+config *.eNodeB*.cellularNic.phy.handoverLatency 50ms
+config *.eNodeB*.cellInfo.broadcastMessageInterval 1s
+config *.eNodeB*.numX2Apps 1
+config *.eNodeB*.x2App[*].server.localPort "5000 + ancestorIndex(1)"
+config *.eNodeB1.x2App[0].client.connectAddress "\"eNodeB2%x2ppp0\""
+config *.eNodeB2.x2App[0].client.connectAddress "\"eNodeB1%x2ppp0\""
+config **.sctp.nagleEnabled false
+config **.sctp.enableHeartbeats false
+
+vector 0 Highway.server.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 1 Highway.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 2 Highway.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 3 Highway.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 4 Highway.router.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 5 Highway.router.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 6 Highway.pgw.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 7 Highway.pgw.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 8 Highway.pgw.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 9 Highway.pgw.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 10 Highway.pgw.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 11 Highway.pgw.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 12 Highway.eNodeB1.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 13 Highway.eNodeB1.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 14 Highway.eNodeB1.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 15 Highway.eNodeB1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 16 Highway.eNodeB1.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 17 Highway.eNodeB1.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 18 Highway.eNodeB2.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 19 Highway.eNodeB2.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 20 Highway.eNodeB2.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 21 Highway.eNodeB2.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 22 Highway.eNodeB2.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 23 Highway.eNodeB2.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+0	7439 8 0 0 0 0 1 0 0 0 0
+1	7447 8 0 0 0 0 1 0 0 0 0
+2	7455 8 0 0 0 0 1 0 0 0 0
+3	7463 8 0 0 0 0 1 0 0 0 0
+4	7471 8 0 0 0 0 1 0 0 0 0
+5	7479 8 0 0 0 0 1 0 0 0 0
+6	7487 8 0 0 0 0 1 0 0 0 0
+7	7495 8 0 0 0 0 1 0 0 0 0
+8	7503 8 0 0 0 0 1 0 0 0 0
+9	7511 8 0 0 0 0 1 0 0 0 0
+10	7519 9 0 0 0 0 1 0 0 0 0
+11	7528 9 0 0 0 0 1 0 0 0 0
+12	7537 9 0 0 0 0 1 0 0 0 0
+13	7546 9 0 0 0 0 1 0 0 0 0
+14	7555 9 0 0 0 0 1 0 0 0 0
+15	7564 9 0 0 0 0 1 0 0 0 0
+16	7573 9 0 0 0 0 1 0 0 0 0
+17	7582 9 0 0 0 0 1 0 0 0 0
+18	7591 9 0 0 0 0 1 0 0 0 0
+19	7600 9 0 0 0 0 1 0 0 0 0
+20	7609 9 0 0 0 0 1 0 0 0 0
+21	7618 9 0 0 0 0 1 0 0 0 0
+22	7627 9 0 0 0 0 1 0 0 0 0
+23	7636 9 0 0 0 0 1 0 0 0 0
+

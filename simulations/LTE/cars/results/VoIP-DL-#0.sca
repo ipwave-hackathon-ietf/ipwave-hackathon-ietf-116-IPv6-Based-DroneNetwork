@@ -1,0 +1,70 @@
+version 3
+run VoIP-DL-0-20230210-17:52:18-901076
+attr configname VoIP-DL
+attr datetime 20230210-17:52:18
+attr datetimef 20230210-175218
+attr experiment VoIP-DL
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network simu5g.simulations.LTE.cars.Highway
+attr processid 901076
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config *.server.numApps 10
+config *.server.app[*].typename VoIPSender
+config *.server.app[*].localPort "3000 + ancestorIndex(0)"
+config *.server.app[*].destAddress "\"car[\" + string(ancestorIndex(0)) + \"]\""
+config *.server.app[*].startTime 0.05s
+config *.car[*].numApps 1
+config *.car[*].app[0].typename VoIPReceiver
+config cmdenv-express-mode true
+config cmdenv-autoflush true
+config image-path ../../images
+config network simu5g.simulations.LTE.cars.Highway
+config debug-on-errors false
+config print-undisposed false
+config sim-time-limit 100s
+config **.sctp.**.scalar-recording false
+config **.sctp.**.vector-recording false
+config **.routingRecorder.enabled false
+config *.playgroundSizeX 20000m
+config *.playgroundSizeY 20000m
+config *.playgroundSizeZ 50m
+config *.veinsManager.host "\"localhost\""
+config *.veinsManager.moduleType "\"simu5g.nodes.cars.Car\""
+config *.veinsManager.moduleName "\"car\""
+config *.veinsManager.launchConfig "xmldoc(\"heterogeneous.launchd.xml\")"
+config *.veinsManager.updateInterval 0.1s
+config *.car[*].mobility.typename VeinsInetMobility
+config *.configurator.config "xmldoc(\"./demo.xml\")"
+config **.numBands 25
+config **.ueTxPower 26
+config **.eNodeBTxPower 46
+config *.car[*].cellularNic.phy.dynamicCellAssociation true
+config **.car[*].masterId 1
+config **.car[*].macCellId 1
+config **.eNodeB1.macCellId 1
+config **.eNodeB1.macNodeId 1
+config **.eNodeB2.macCellId 2
+config **.eNodeB2.macNodeId 2
+config *.car[*].cellularNic.phy.enableHandover true
+config *.eNodeB*.cellularNic.phy.enableHandover true
+config *.eNodeB*.cellularNic.phy.handoverLatency 50ms
+config *.eNodeB*.cellInfo.broadcastMessageInterval 1s
+config *.eNodeB*.numX2Apps 1
+config *.eNodeB*.x2App[*].server.localPort "5000 + ancestorIndex(1)"
+config *.eNodeB1.x2App[0].client.connectAddress "\"eNodeB2%x2ppp0\""
+config *.eNodeB2.x2App[0].client.connectAddress "\"eNodeB1%x2ppp0\""
+config **.sctp.nagleEnabled false
+config **.sctp.enableHeartbeats false
+
+scalar Highway.eNodeB1.x2App[0].client ums 1452
+scalar Highway.eNodeB2.x2App[0].client ums 1452
+

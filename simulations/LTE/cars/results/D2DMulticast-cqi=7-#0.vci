@@ -1,0 +1,961 @@
+file 3658929 1676019541                                         
+version 3
+run D2DMulticast-0-20230210-17:51:55-900899
+attr configname D2DMulticast
+attr datetime 20230210-17:51:55
+attr datetimef 20230210-175155
+attr experiment D2DMulticast
+attr inifile omnetpp.ini
+attr iterationvars $cqi=7
+attr iterationvarsd cqi=7
+attr iterationvarsf cqi=7-
+attr measurement $cqi=7
+attr network simu5g.simulations.LTE.cars.Highway
+attr processid 900899
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+itervar cqi 7
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config *.eNodeB*.nicType "\"LteNicEnbD2D\""
+config *.car[*].nicType "\"LteNicUeD2D\""
+config **.amcMode "\"D2D\""
+config **.enableD2DCqiReporting false
+config **.usePreconfiguredTxParams true
+config **.d2dCqi 7
+config *.car[*].numApps 1
+config *.car[0..4].ipv4.configurator.mcastGroups "\"224.0.0.10\""
+config *.car[0].app[*].typename AlertSender
+config *.car[0].app[*].localPort 3088+ancestorIndex(0)
+config *.car[0].app[*].startTime uniform(0s,0.02s)
+config *.car[0].app[*].destAddress "\"224.0.0.10\""
+config *.car[0].app[*].destPort 1000
+config *.car[1..3].app[*].typename AlertReceiver
+config *.car[1..3].app[*].localPort 1000
+config *.car[4..7].ipv4.configurator.mcastGroups "\"224.0.0.11\""
+config *.car[4].app[*].typename AlertSender
+config *.car[4].app[*].localPort 3088+ancestorIndex(0)
+config *.car[4].app[*].startTime uniform(0s,0.02s)
+config *.car[4].app[*].destAddress "\"224.0.0.11\""
+config *.car[4].app[*].destPort 1000
+config *.car[5..7].app[*].typename AlertReceiver
+config *.car[5..7].app[*].localPort 1000
+config cmdenv-express-mode true
+config cmdenv-autoflush true
+config image-path ../../images
+config network simu5g.simulations.LTE.cars.Highway
+config debug-on-errors false
+config print-undisposed false
+config sim-time-limit 100s
+config **.sctp.**.scalar-recording false
+config **.sctp.**.vector-recording false
+config **.routingRecorder.enabled false
+config *.playgroundSizeX 20000m
+config *.playgroundSizeY 20000m
+config *.playgroundSizeZ 50m
+config *.veinsManager.host "\"localhost\""
+config *.veinsManager.moduleType "\"simu5g.nodes.cars.Car\""
+config *.veinsManager.moduleName "\"car\""
+config *.veinsManager.launchConfig "xmldoc(\"heterogeneous.launchd.xml\")"
+config *.veinsManager.updateInterval 0.1s
+config *.car[*].mobility.typename VeinsInetMobility
+config *.configurator.config "xmldoc(\"./demo.xml\")"
+config **.numBands 25
+config **.ueTxPower 26
+config **.eNodeBTxPower 46
+config *.car[*].cellularNic.phy.dynamicCellAssociation true
+config **.car[*].masterId 1
+config **.car[*].macCellId 1
+config **.eNodeB1.macCellId 1
+config **.eNodeB1.macNodeId 1
+config **.eNodeB2.macCellId 2
+config **.eNodeB2.macNodeId 2
+config *.car[*].cellularNic.phy.enableHandover true
+config *.eNodeB*.cellularNic.phy.enableHandover true
+config *.eNodeB*.cellularNic.phy.handoverLatency 50ms
+config *.eNodeB*.cellInfo.broadcastMessageInterval 1s
+config *.eNodeB*.numX2Apps 1
+config *.eNodeB*.x2App[*].server.localPort "5000 + ancestorIndex(1)"
+config *.eNodeB1.x2App[0].client.connectAddress "\"eNodeB2%x2ppp0\""
+config *.eNodeB2.x2App[0].client.connectAddress "\"eNodeB1%x2ppp0\""
+config **.sctp.nagleEnabled false
+config **.sctp.enableHeartbeats false
+
+vector 0 Highway.server.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 1 Highway.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 2 Highway.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 3 Highway.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 4 Highway.router.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 5 Highway.router.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 6 Highway.pgw.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 7 Highway.pgw.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 8 Highway.pgw.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 9 Highway.pgw.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 10 Highway.pgw.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 11 Highway.pgw.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 12 Highway.eNodeB1.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 13 Highway.eNodeB1.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 14 Highway.eNodeB1.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 15 Highway.eNodeB1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 16 Highway.eNodeB1.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 17 Highway.eNodeB1.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 18 Highway.eNodeB2.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 19 Highway.eNodeB2.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 20 Highway.eNodeB2.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 21 Highway.eNodeB2.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 22 Highway.eNodeB2.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 23 Highway.eNodeB2.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 24 Highway.eNodeB1.x2ppp[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 25 Highway.eNodeB1.x2ppp[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 26 Highway.eNodeB1.x2ppp[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 27 Highway.eNodeB1.x2ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 28 Highway.eNodeB1.x2ppp[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 29 Highway.eNodeB1.x2ppp[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 30 Highway.eNodeB2.x2ppp[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 31 Highway.eNodeB2.x2ppp[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 32 Highway.eNodeB2.x2ppp[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 33 Highway.eNodeB2.x2ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 34 Highway.eNodeB2.x2ppp[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 35 Highway.eNodeB2.x2ppp[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 36 Highway.eNodeB2.x2ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 37 Highway.eNodeB2.x2ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 38 Highway.eNodeB1.x2ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 39 Highway.eNodeB1.x2ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 40 Highway.eNodeB1.cellularNic.mac avgServedBlocksUl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksUl
+attr title "Avg Served Blocks Ul"
+attr unit blocks
+vector 41 Highway.eNodeB1.cellularNic.mac avgServedBlocksDl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksDl
+attr title "Avg Served Blocks Dl"
+attr unit blocks
+vector 42 Highway.eNodeB2.cellularNic.mac avgServedBlocksUl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksUl
+attr title "Avg Served Blocks Ul"
+attr unit blocks
+vector 43 Highway.eNodeB2.cellularNic.mac avgServedBlocksDl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksDl
+attr title "Avg Served Blocks Dl"
+attr unit blocks
+vector 44 Highway.car[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 45 Highway.car[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 46 Highway.car[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 47 Highway.car[0].cellularNic.channelModel[0] distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 48 Highway.car[0].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 49 Highway.car[0].cellularNic.channelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 50 Highway.car[0].cellularNic.channelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 51 Highway.eNodeB1.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 52 Highway.car[0].app[0] alertSentMsg:vector ETV
+attr recordingmode vector
+attr source alertSentMsg
+attr title "Alert messages sent"
+attr unit ""
+vector 53 Highway.car[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 54 Highway.car[0].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 55 Highway.car[0].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 56 Highway.car[0].cellularNic.pdcpRrc receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 57 Highway.car[0].cellularNic.pdcpRrc sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 58 Highway.car[0].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 59 Highway.car[0].cellularNic.rlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 60 Highway.car[0].cellularNic.mac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 61 Highway.car[0].cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 62 Highway.eNodeB1.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 63 Highway.car[0].cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 64 Highway.car[0].cellularNic.phy averageCqiUl:vector ETV
+attr recordingmode vector
+attr source averageCqiUl
+attr title "Average Cqi reported in UL"
+attr unit cqi
+vector 65 Highway.car[0].cellularNic.channelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 66 Highway.car[0].cellularNic.mac macDelayUl:vector ETV
+attr recordingmode vector
+attr source macDelayUl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 67 Highway.eNodeB1.cellularNic.mac measuredItbs:vector ETV
+attr recordingmode vector
+attr source measuredItbs
+attr title "TBS index"
+attr unit ""
+vector 68 Highway.car[0].cellularNic.mac harqErrorRate_1st_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Ul (1st tx)"
+attr unit ""
+vector 69 Highway.car[0].cellularNic.mac harqErrorRateUl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateUl
+attr title "Harq Error Rate Ul"
+attr unit ""
+vector 70 Highway.car[0].cellularNic.mac harqTxAttemptsUl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsUl
+attr title "Harq Tx Attempts Ul"
+attr unit ""
+vector 71 Highway.car[0].cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 72 Highway.car[0].cellularNic.rlc.um rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 73 Highway.car[0].cellularNic.rlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 74 Highway.car[0].cellularNic.phy averageCqiD2D:vector ETV
+attr recordingmode vector
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D"
+attr unit cqi
+vector 75 Highway.car[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 76 Highway.car[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 77 Highway.car[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 78 Highway.car[1].cellularNic.channelModel[0] distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 79 Highway.car[1].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 80 Highway.car[1].cellularNic.channelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 81 Highway.car[1].cellularNic.channelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 82 Highway.car[1].cellularNic.channelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 83 Highway.car[1].cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 84 Highway.car[0].cellularNic.mac macDelayDl:vector ETV
+attr recordingmode vector
+attr source macDelayDl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 85 Highway.car[1].cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 86 Highway.car[1].cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 87 Highway.car[1].cellularNic.rlc.um rlcPduThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 88 Highway.car[1].cellularNic.rlc.um rlcPduDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 89 Highway.car[1].cellularNic.rlc.um rlcPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 90 Highway.car[1].cellularNic.rlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 91 Highway.car[1].cellularNic.rlc.um rlcThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 92 Highway.car[1].cellularNic.rlc.um rlcDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 93 Highway.car[1].cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 94 Highway.car[1].cellularNic.rlc.um rlcPduPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 95 Highway.car[1].cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 96 Highway.car[1].cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 97 Highway.car[1].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 98 Highway.car[1].app[0] alertDelay:vector ETV
+attr recordingmode vector
+attr source alertDelay
+attr title "Alert Message Delay"
+attr unit s
+vector 99 Highway.car[1].app[0] alertRcvdMsg:vector ETV
+attr recordingmode vector
+attr source alertRcvdMsg
+attr title "Alert Messages Received"
+attr unit s
+vector 100 Highway.car[2].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 101 Highway.car[2].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 102 Highway.car[2].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 103 Highway.car[2].cellularNic.channelModel[0] distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 104 Highway.car[2].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 105 Highway.car[2].cellularNic.channelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 106 Highway.car[2].cellularNic.channelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 107 Highway.car[2].cellularNic.channelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 108 Highway.car[2].cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 109 Highway.car[2].cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 110 Highway.car[2].cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 111 Highway.car[2].cellularNic.rlc.um rlcPduThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 112 Highway.car[2].cellularNic.rlc.um rlcPduDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 113 Highway.car[2].cellularNic.rlc.um rlcPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 114 Highway.car[2].cellularNic.rlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 115 Highway.car[2].cellularNic.rlc.um rlcThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 116 Highway.car[2].cellularNic.rlc.um rlcDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 117 Highway.car[2].cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 118 Highway.car[2].cellularNic.rlc.um rlcPduPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 119 Highway.car[2].cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 120 Highway.car[2].cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 121 Highway.car[2].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 122 Highway.car[2].app[0] alertDelay:vector ETV
+attr recordingmode vector
+attr source alertDelay
+attr title "Alert Message Delay"
+attr unit s
+vector 123 Highway.car[2].app[0] alertRcvdMsg:vector ETV
+attr recordingmode vector
+attr source alertRcvdMsg
+attr title "Alert Messages Received"
+attr unit s
+67	28213 601760 613 134816 0.117 13.217 32768 12 12 393216 4718592
+vector 124 Highway.car[3].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 125 Highway.car[3].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 126 Highway.car[3].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 127 Highway.car[3].cellularNic.channelModel[0] distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 128 Highway.car[3].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 129 Highway.car[3].cellularNic.channelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 130 Highway.car[3].cellularNic.channelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 131 Highway.car[3].cellularNic.channelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 132 Highway.car[3].cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 133 Highway.car[3].cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 134 Highway.car[3].cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 135 Highway.car[3].cellularNic.rlc.um rlcPduThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 136 Highway.car[3].cellularNic.rlc.um rlcPduDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 137 Highway.car[3].cellularNic.rlc.um rlcPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 138 Highway.car[3].cellularNic.rlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 139 Highway.car[3].cellularNic.rlc.um rlcThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 140 Highway.car[3].cellularNic.rlc.um rlcDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 141 Highway.car[3].cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 142 Highway.car[3].cellularNic.rlc.um rlcPduPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 143 Highway.car[3].cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 144 Highway.car[3].cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 145 Highway.car[3].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 146 Highway.car[3].app[0] alertDelay:vector ETV
+attr recordingmode vector
+attr source alertDelay
+attr title "Alert Message Delay"
+attr unit s
+vector 147 Highway.car[3].app[0] alertRcvdMsg:vector ETV
+attr recordingmode vector
+attr source alertRcvdMsg
+attr title "Alert Messages Received"
+attr unit s
+0	634561 8 0 0 0 0 1 0 0 0 0
+1	634569 8 0 0 0 0 1 0 0 0 0
+2	634577 8 0 0 0 0 1 0 0 0 0
+3	634585 8 0 0 0 0 1 0 0 0 0
+4	634593 8 0 0 0 0 1 0 0 0 0
+5	634601 8 0 0 0 0 1 0 0 0 0
+6	634609 8 0 0 0 0 1 0 0 0 0
+7	634617 8 0 0 0 0 1 0 0 0 0
+8	634625 8 0 0 0 0 1 0 0 0 0
+9	634633 8 0 0 0 0 1 0 0 0 0
+10	634641 9 0 0 0 0 1 0 0 0 0
+11	634650 9 0 0 0 0 1 0 0 0 0
+12	634659 9 0 0 0 0 1 0 0 0 0
+13	634668 166 0 74 0 0.0000005052 9 0 1 4 4
+14	634834 9 0 0 0 0 1 0 0 0 0
+15	634843 9 0 0 0 0 1 0 0 0 0
+16	634852 9 0 0 0 0 1 0 0 0 0
+17	634861 9 0 0 0 0 1 0 0 0 0
+18	634870 9 0 0 0 0 1 0 0 0 0
+19	634879 166 0 73 0 0.0000005052 9 0 1 4 4
+20	635045 9 0 0 0 0 1 0 0 0 0
+21	635054 9 0 0 0 0 1 0 0 0 0
+22	635063 9 0 0 0 0 1 0 0 0 0
+23	635072 9 0 0 0 0 1 0 0 0 0
+24	635081 82 27 70 0 0.0000004708 4 288 1376 3328 3379200
+25	635163 73 27 70 0 0.0000004708 4 0 0 0 0
+26	635236 82 27 70 0 0.0000004708 4 288 1376 3328 3379200
+27	635318 79 27 70 0 0.0000004708 4 43 179 444 58820
+28	635397 73 27 70 0 0.0000004708 4 0 0 0 0
+29	635470 73 27 70 0 0.0000004708 4 0 0 0 0
+30	635543 82 28 68 0 0.0000004708 4 288 1376 3328 3379200
+31	635625 73 28 68 0 0.0000004708 4 0 0 0 0
+32	635698 82 28 68 0 0.0000004708 4 288 1376 3328 3379200
+33	635780 79 28 68 0 0.0000004708 4 43 179 444 58820
+34	635859 73 28 68 0 0.0000004708 4 0 0 0 0
+35	635932 73 28 68 0 0.0000004708 4 0 0 0 0
+36	636005 90 33 76 0.0000001292 0.0000005552 4 43 179 444 58820
+37	636095 90 33 76 0.0000001292 0.0000005552 4 36 172 416 52800
+38	636185 90 34 75 0.0000001292 0.0000005552 4 43 179 444 58820
+39	636275 90 34 75 0.0000001292 0.0000005552 4 36 172 416 52800
+40	636365 287293 83 176450 0.001 16.368 16368 0 2 4878 8130
+41	923658 287293 83 176450 0.001 16.368 16368 0 0 0 0
+42	1210951 287295 84 176451 0.001 16.368 16368 0 0 0 0
+43	1498246 287295 84 176451 0.001 16.368 16368 0 0 0 0
+44	1785541 13 481 481 0.1 0.1 1 0 0 0 0
+45	1785554 15926 481 176467 0.1 16.369 815 0 814 331705 180115815
+46	1801480 13 481 481 0.1 0.1 1 0 0 0 0
+47	1801493 938 481 170940 0.1 16 34 83.408390730116 326.53330611134 7094.6230148866 1833594.3134086
+48	1802431 13 481 481 0.1 0.1 1 1 1 1 1
+49	1802444 84974 501 176454 0.102 16.368 2712 30.463630700238 49.679218440738 107200.3189139 4309452.513395
+50	1887418 84926 501 176454 0.102 16.368 2712 38.92172658073 74.566994015494 152467.90274158 8780063.7533274
+51	1972344 157154 502 176459 0.102 16.368 8883 1 2 10509 13761
+52	2129498 14393 537 176460 0.109 16.369 814 1 1 814 814
+53	2143891 15207 538 176461 0.109 16.369 814 18 18 14652 263736
+54	2159098 15207 540 176463 0.109 16.369 814 38 38 30932 1175416
+55	2174305 15207 540 176463 0.109 16.369 814 38 38 30932 1175416
+56	2189512 15207 543 176466 0.109 16.369 814 38 38 30932 1175416
+57	2204719 15207 543 176466 0.109 16.369 814 39 39 31746 1238094
+58	2219926 15207 544 176467 0.109 16.369 814 18 18 14652 263736
+59	2235133 15207 545 176468 0.109 16.369 814 39 39 31746 1238094
+60	2250340 30374 547 176312 0.109 16.359 1626 41 41 66666 2733306
+61	2280714 72683 548 176315 0.109 16.359 4065 1 43 39837 1511367
+62	2353397 114183 560 176358 0.11 16.362 6504 1 1 6504 6504
+63	2467580 115000 569 176402 0.111 16.363 6504 1 1 6504 6504
+64	2582580 30372 583 176297 0.113 16.358 1626 8 15 23872 350948
+65	2612952 51322 594 176319 0.114 16.359 1626 32.618248633379 49.08147740155 64369.344018314 2591136.3093886
+66	2664274 35254 613 176358 0.117 16.362 1626 0.004 0.004 6.5039999999997 0.026015999999999
+67	2699528 157640 134816 176358 13.217 16.362 7882 12 12 94584 1135008
+68	2857168 28752 630 176400 0.118 16.363 1626 0 0 0 0
+69	2885920 28752 630 176400 0.118 16.363 1626 0 0 0 0
+70	2914672 28752 630 176400 0.118 16.363 1626 1 1 1626 1626
+71	2943424 14374 634 176308 0.119 16.359 813 1 1 813 813
+72	2957798 14374 636 176310 0.119 16.359 813 0 0 0 0
+73	2972172 15187 636 176310 0.119 16.359 813 41 41 33333 1366653
+74	2987359 14374 642 176316 0.119 16.359 813 7 7 5691 39837
+75	3001733 11123 43747 176392 5.2 16.363 559 0 558 155961 58069479
+76	3012856 15 43747 43747 5.2 5.2 1 0 0 0 0
+77	3012871 15 43747 43747 5.2 5.2 1 0 0 0 0
+78	3012886 674 43747 170941 5.2 16 24 103.11955274714 326.53330611134 5206.2498128333 1377593.5642058
+79	3013560 15 43747 43747 5.2 5.2 1 1 1 1 1
+80	3013575 59185 43776 176456 5.202 16.368 1862 32.455565938099 50.292214131405 72306.365208245 2840494.7364883
+81	3072760 59107 43776 176456 5.202 16.368 1862 47.006154753064 69.935507420301 106416.72235639 6152064.4007413
+82	3131867 17169 43965 176337 5.22 16.36 558 28.327867686354 71.128677651633 28871.667956669 1536572.8953313
+83	3149036 9966 43966 176338 5.22 16.36 558 43 43 23994 1031742
+84	3159002 39200 43981 176386 5.223 16.363 1748 0.004 0.004 6.9919999999997 0.027967999999999
+85	3198202 10658 43981 176386 5.223 16.363 558 41 41 22878 937998
+86	3208860 10658 43983 176388 5.223 16.363 558 41 41 22878 937998
+87	3219518 10100 43983 176388 5.223 16.363 558 0 0 0 0
+88	3229618 12332 43983 176388 5.223 16.363 558 0.004 0.004 2.232 0.0089280000000001
+89	3241950 14418 43983 176388 5.223 16.363 812 0 1 254 254
+90	3256368 14418 43983 176388 5.223 16.363 812 0 1 254 254
+91	3270786 17855 43983 176388 5.223 16.363 558 7.4669730040207 1329.9517203447 507515.10737767 530481789.56884
+92	3288641 12332 43983 176388 5.223 16.363 558 0.014 0.014 7.812 0.109368
+93	3300973 10658 43983 176388 5.223 16.363 558 39 39 21762 848718
+94	3311631 14418 43983 176388 5.223 16.363 812 0 1 254 254
+95	3326049 10658 43984 176389 5.223 16.363 558 39 39 21762 848718
+96	3336707 10658 43984 176389 5.223 16.363 558 38 38 21204 805752
+97	3347365 10658 43987 176392 5.223 16.363 558 18 18 10044 180792
+98	3358023 12332 43988 176393 5.223 16.363 558 0.014 0.014 7.812 0.109368
+99	3370355 10100 43988 176393 5.223 16.363 558 1 1 558 558
+100	3380455 6246 101263 176384 10.6 16.363 289 0 288 41616 8004144
+101	3386701 18 101263 101263 10.6 10.6 1 0 0 0 0
+102	3386719 18 101263 101263 10.6 10.6 1 0 0 0 0
+103	3386737 423 101263 170942 10.6 16 14 116.54669316866 326.53330611134 3107.770046875 834540.53191007
+104	3387160 18 101263 101263 10.6 10.6 1 1 1 1 1
+105	3387178 32436 101302 176458 10.602 16.368 962 35.654380010011 43.68264284921 38338.574994852 1529532.9067855
+106	3419614 32195 101302 176458 10.602 16.368 962 47.439726544903 57.446849182156 51720.558525174 2785527.3899307
+107	3451809 9413 101531 176339 10.62 16.36 288 21.117649066399 51.0496997433 11022.616290686 434722.78606861
+108	3461222 5691 101532 176340 10.62 16.36 288 43 43 12384 532512
+109	3466913 6048 101549 176378 10.623 16.363 288 41 41 11808 484128
+110	3472961 6048 101551 176380 10.623 16.363 288 41 41 11808 484128
+111	3479009 5760 101551 176380 10.623 16.363 288 0 0 0 0
+112	3484769 6912 101551 176380 10.623 16.363 288 0.004 0.004 1.152 0.004608
+113	3491681 16240 101551 176380 10.623 16.363 812 0 1 524 524
+114	3507921 16240 101551 176380 10.623 16.363 812 0 1 524 524
+115	3524161 9760 101551 176380 10.623 16.363 288 3.6712792996329 686.42669437145 113395.24422485 55642149.83335
+116	3533921 6912 101551 176380 10.623 16.363 288 0.014 0.014 4.032 0.056448
+117	3540833 6048 101551 176380 10.623 16.363 288 39 39 11232 438048
+118	3546881 16240 101551 176380 10.623 16.363 812 0 1 524 524
+119	3563121 6048 101552 176381 10.623 16.363 288 39 39 11232 438048
+120	3569169 6048 101552 176381 10.623 16.363 288 38 38 10944 415872
+121	3575217 6048 101555 176384 10.623 16.363 288 18 18 5184 93312
+122	3581265 6912 101556 176385 10.623 16.363 288 0.014 0.014 4.032 0.056448
+123	3588177 5760 101556 176385 10.623 16.363 288 1 1 288 288
+124	3593937 597 167931 176376 15.8 16.363 29 0 28 406 7714
+125	3594534 18 167931 167931 15.8 15.8 1 0 0 0 0
+126	3594552 18 167931 167931 15.8 15.8 1 0 0 0 0
+127	3594570 124 167931 170943 15.8 16 4 122.33577762573 326.53330611134 897.34808055492 242706.70910968
+128	3594694 18 167931 167931 15.8 15.8 1 1 1 1 1
+129	3594712 3207 167971 176433 15.802 16.366 95 28.655710841516 30.553639175714 2734.3935604032 78710.837382693
+130	3597919 3205 167971 176433 15.802 16.366 95 51.387833335978 53.643191651696 4897.91680077 252541.59668805
+131	3601124 917 168240 176341 15.82 16.36 28 33.052022254049 44.680535760499 1044.2426802773 39344.073922704
+132	3602041 553 168241 176342 15.82 16.36 28 43 43 1204 51772
+133	3602594 588 168269 176370 15.823 16.363 28 41 41 1148 47068
+134	3603182 588 168271 176372 15.823 16.363 28 41 41 1148 47068
+135	3603770 560 168271 176372 15.823 16.363 28 0 0 0 0
+136	3604330 672 168271 176372 15.823 16.363 28 0.004 0.004 0.112 0.000448
+137	3605002 16240 168271 176372 15.823 16.363 812 0 1 784 784
+138	3621242 16240 168271 176372 15.823 16.363 812 0 1 784 784
+139	3637482 950 168271 176372 15.823 16.363 28 2.4647664791759 66.735928619446 978.50173535567 44546.408725345
+140	3638432 672 168271 176372 15.823 16.363 28 0.014 0.014 0.392 0.005488
+141	3639104 588 168271 176372 15.823 16.363 28 39 39 1092 42588
+142	3639692 16240 168271 176372 15.823 16.363 812 0 1 784 784
+143	3655932 588 168272 176373 15.823 16.363 28 39 39 1092 42588
+144	3656520 588 168272 176373 15.823 16.363 28 38 38 1064 40432
+145	3657108 588 168275 176376 15.823 16.363 28 18 18 504 9072
+146	3657696 672 168276 176377 15.823 16.363 28 0.014 0.014 0.392 0.005488
+147	3658368 560 168276 176377 15.823 16.363 28 1 1 28 28
+

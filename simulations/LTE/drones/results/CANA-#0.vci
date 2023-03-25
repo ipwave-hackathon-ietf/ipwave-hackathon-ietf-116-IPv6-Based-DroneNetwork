@@ -1,0 +1,832 @@
+file 32093 1676289718                                           
+version 3
+run CANA-0-20230213-09:54:51-1023126
+attr configname CANA
+attr datetime 20230213-09:54:51
+attr datetimef 20230213-095451
+attr experiment CANA
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network CANANetwork
+attr processid 1023126
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config network CANANetwork
+config *.nbst 4
+config *.numdrones 10
+config **.dst*.mobility.typename StatNodeMob
+config **.dst[0].mobility.initialX 200m
+config **.dst[0].mobility.initialY 100m
+config **.dst[0].mobility.initialZ 0m
+config **.dst[1].mobility.initialX 100m
+config **.dst[1].mobility.initialY 250m
+config **.dst[1].mobility.initialZ 0m
+config **.dst[2].mobility.initialX 160m
+config **.dst[2].mobility.initialY 220m
+config **.dst[2].mobility.initialZ 0m
+config **.dst[3].mobility.initialX 200m
+config **.dst[3].mobility.initialY 330m
+config **.dst[3].mobility.initialZ 0m
+config **.dst[4].mobility.initialX 400m
+config **.dst[4].mobility.initialY 300m
+config **.dst[4].mobility.initialZ 0m
+config **.dst[5].mobility.initialX 400m
+config **.dst[5].mobility.initialY 200m
+config **.dst[5].mobility.initialZ 0m
+config **.dst[*].mobility.initFromDisplayString false
+config **.bstion*.mobility.typename StatNodeMob
+config **.bstion[0].mobility.initialX 200m
+config **.bstion[0].mobility.initialY 20m
+config **.bstion[0].mobility.initialZ 0m
+config **.bstion[1].mobility.initialX 20m
+config **.bstion[1].mobility.initialY 200m
+config **.bstion[1].mobility.initialZ 0m
+config **.bstion[2].mobility.initialX 480m
+config **.bstion[2].mobility.initialY 190m
+config **.bstion[2].mobility.initialZ 0m
+config **.bstion[3].mobility.initialX 200m
+config **.bstion[3].mobility.initialY 380m
+config **.bstion[3].mobility.initialZ 0m
+config **.bstion[*].mobility.initFromDisplayString false
+config **.drone*.mobility.typename DroneNetMob2
+config **.drone*.mobility.ndst 30
+config **.drone*.mobility.initFromDisplayString false
+config **.drone*.mobility.changeInterval "truncnormal(2s, 0.5s)"
+config *.drone[*].mobility.angleDelta "normal(0deg, 30deg)"
+config **.drone*.mobility.speed 5mps
+config **.drone[*].mobility.initFromDisplayString false
+config sim-time-limit 10day
+config **.constraintAreaMinX 0m
+config **.constraintAreaMinY 0m
+config **.constraintAreaMinZ 0m
+config **.constraintAreaMaxX 500m
+config **.constraintAreaMaxY 500m
+config **.constraintAreaMaxZ 100m
+
+vector 0 CANANetwork.drone[0].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 1 CANANetwork.drone[0].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 2 CANANetwork.drone[0].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 3 CANANetwork.drone[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 4 CANANetwork.drone[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 5 CANANetwork.drone[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 6 CANANetwork.drone[1].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 7 CANANetwork.drone[1].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 8 CANANetwork.drone[1].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 9 CANANetwork.drone[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 10 CANANetwork.drone[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 11 CANANetwork.drone[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 12 CANANetwork.drone[2].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 13 CANANetwork.drone[2].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 14 CANANetwork.drone[2].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 15 CANANetwork.drone[2].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 16 CANANetwork.drone[2].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 17 CANANetwork.drone[2].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 18 CANANetwork.drone[3].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 19 CANANetwork.drone[3].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 20 CANANetwork.drone[3].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 21 CANANetwork.drone[3].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 22 CANANetwork.drone[3].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 23 CANANetwork.drone[3].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 24 CANANetwork.drone[4].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 25 CANANetwork.drone[4].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 26 CANANetwork.drone[4].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 27 CANANetwork.drone[4].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 28 CANANetwork.drone[4].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 29 CANANetwork.drone[4].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 30 CANANetwork.drone[5].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 31 CANANetwork.drone[5].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 32 CANANetwork.drone[5].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 33 CANANetwork.drone[5].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 34 CANANetwork.drone[5].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 35 CANANetwork.drone[5].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 36 CANANetwork.drone[6].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 37 CANANetwork.drone[6].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 38 CANANetwork.drone[6].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 39 CANANetwork.drone[6].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 40 CANANetwork.drone[6].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 41 CANANetwork.drone[6].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 42 CANANetwork.drone[7].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 43 CANANetwork.drone[7].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 44 CANANetwork.drone[7].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 45 CANANetwork.drone[7].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 46 CANANetwork.drone[7].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 47 CANANetwork.drone[7].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 48 CANANetwork.drone[8].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 49 CANANetwork.drone[8].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 50 CANANetwork.drone[8].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 51 CANANetwork.drone[8].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 52 CANANetwork.drone[8].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 53 CANANetwork.drone[8].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 54 CANANetwork.drone[9].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 55 CANANetwork.drone[9].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 56 CANANetwork.drone[9].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 57 CANANetwork.drone[9].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 58 CANANetwork.drone[9].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 59 CANANetwork.drone[9].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 60 CANANetwork.gcs.wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 61 CANANetwork.gcs.wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 62 CANANetwork.gcs.wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 63 CANANetwork.gcs.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 64 CANANetwork.gcs.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 65 CANANetwork.gcs.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 66 CANANetwork.drone[0].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 67 CANANetwork.drone[0].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 68 CANANetwork.drone[1].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 69 CANANetwork.drone[1].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 70 CANANetwork.drone[2].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 71 CANANetwork.drone[2].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 72 CANANetwork.drone[3].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 73 CANANetwork.drone[3].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 74 CANANetwork.drone[4].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 75 CANANetwork.drone[4].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 76 CANANetwork.drone[5].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 77 CANANetwork.drone[5].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 78 CANANetwork.drone[6].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 79 CANANetwork.drone[6].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 80 CANANetwork.drone[7].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 81 CANANetwork.drone[7].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 82 CANANetwork.drone[8].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 83 CANANetwork.drone[8].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 84 CANANetwork.drone[9].wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 85 CANANetwork.drone[9].wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 86 CANANetwork.gcs.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 87 CANANetwork.gcs.wlan[0].radio radioChannel:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioChannelChanged
+attr title "Radio channel"
+vector 88 CANANetwork.drone[0].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 89 CANANetwork.drone[0].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 90 CANANetwork.drone[1].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 91 CANANetwork.drone[1].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 92 CANANetwork.drone[2].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 93 CANANetwork.drone[2].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 94 CANANetwork.drone[3].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 95 CANANetwork.drone[3].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 96 CANANetwork.drone[4].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 97 CANANetwork.drone[4].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 98 CANANetwork.drone[5].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 99 CANANetwork.drone[5].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 100 CANANetwork.drone[6].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 101 CANANetwork.drone[6].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 102 CANANetwork.drone[7].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 103 CANANetwork.drone[7].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 104 CANANetwork.drone[8].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 105 CANANetwork.drone[8].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 106 CANANetwork.drone[9].wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 107 CANANetwork.drone[9].wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 108 CANANetwork.gcs.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 109 CANANetwork.gcs.wlan[0].mac.dcf.channelAccess.contention stateChanged:vector ETV
+attr enum IDLE,DEFER,IFS_AND_BACKOFF
+attr interpolationmode none
+attr recordingmode vector
+attr title "contention state changed"
+attr type enum
+vector 110 CANANetwork.drone[0].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 111 CANANetwork.drone[1].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 112 CANANetwork.drone[2].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 113 CANANetwork.drone[3].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 114 CANANetwork.drone[4].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 115 CANANetwork.drone[5].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 116 CANANetwork.drone[6].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 117 CANANetwork.drone[7].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 118 CANANetwork.drone[8].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 119 CANANetwork.drone[9].wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+vector 120 CANANetwork.gcs.wlan[0].mac.dcf.recoveryProcedure contentionWindowChanged:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr title "contention window"
+0	30388 16 0 0 0 0 2 0 0 0 0
+1	30404 16 0 0 0 0 2 0 0 0 0
+2	30420 16 0 0 0 0 2 0 0 0 0
+3	30436 8 0 0 0 0 1 0 0 0 0
+4	30444 8 0 0 0 0 1 0 0 0 0
+5	30452 8 0 0 0 0 1 0 0 0 0
+6	30460 16 0 0 0 0 2 0 0 0 0
+7	30476 16 0 0 0 0 2 0 0 0 0
+8	30492 16 0 0 0 0 2 0 0 0 0
+9	30508 8 0 0 0 0 1 0 0 0 0
+10	30516 9 0 0 0 0 1 0 0 0 0
+11	30525 9 0 0 0 0 1 0 0 0 0
+12	30534 18 0 0 0 0 2 0 0 0 0
+13	30552 18 0 0 0 0 2 0 0 0 0
+14	30570 18 0 0 0 0 2 0 0 0 0
+15	30588 9 0 0 0 0 1 0 0 0 0
+16	30597 9 0 0 0 0 1 0 0 0 0
+17	30606 9 0 0 0 0 1 0 0 0 0
+18	30615 18 0 0 0 0 2 0 0 0 0
+19	30633 18 0 0 0 0 2 0 0 0 0
+20	30651 18 0 0 0 0 2 0 0 0 0
+21	30669 9 0 0 0 0 1 0 0 0 0
+22	30678 9 0 0 0 0 1 0 0 0 0
+23	30687 9 0 0 0 0 1 0 0 0 0
+24	30696 18 0 0 0 0 2 0 0 0 0
+25	30714 18 0 0 0 0 2 0 0 0 0
+26	30732 18 0 0 0 0 2 0 0 0 0
+27	30750 9 0 0 0 0 1 0 0 0 0
+28	30759 9 0 0 0 0 1 0 0 0 0
+29	30768 9 0 0 0 0 1 0 0 0 0
+30	30777 18 0 0 0 0 2 0 0 0 0
+31	30795 18 0 0 0 0 2 0 0 0 0
+32	30813 18 0 0 0 0 2 0 0 0 0
+33	30831 9 0 0 0 0 1 0 0 0 0
+34	30840 9 0 0 0 0 1 0 0 0 0
+35	30849 9 0 0 0 0 1 0 0 0 0
+36	30858 18 0 0 0 0 2 0 0 0 0
+37	30876 18 0 0 0 0 2 0 0 0 0
+38	30894 18 0 0 0 0 2 0 0 0 0
+39	30912 9 0 0 0 0 1 0 0 0 0
+40	30921 9 0 0 0 0 1 0 0 0 0
+41	30930 9 0 0 0 0 1 0 0 0 0
+42	30939 18 0 0 0 0 2 0 0 0 0
+43	30957 18 0 0 0 0 2 0 0 0 0
+44	30975 18 0 0 0 0 2 0 0 0 0
+45	30993 9 0 0 0 0 1 0 0 0 0
+46	31002 9 0 0 0 0 1 0 0 0 0
+47	31011 9 0 0 0 0 1 0 0 0 0
+48	31020 18 0 0 0 0 2 0 0 0 0
+49	31038 18 0 0 0 0 2 0 0 0 0
+50	31056 18 0 0 0 0 2 0 0 0 0
+51	31074 9 0 0 0 0 1 0 0 0 0
+52	31083 9 0 0 0 0 1 0 0 0 0
+53	31092 9 0 0 0 0 1 0 0 0 0
+54	31101 18 0 0 0 0 2 0 0 0 0
+55	31119 18 0 0 0 0 2 0 0 0 0
+56	31137 18 0 0 0 0 2 0 0 0 0
+57	31155 9 0 0 0 0 1 0 0 0 0
+58	31164 9 0 0 0 0 1 0 0 0 0
+59	31173 9 0 0 0 0 1 0 0 0 0
+60	31182 18 0 0 0 0 2 0 0 0 0
+61	31200 18 0 0 0 0 2 0 0 0 0
+62	31218 18 0 0 0 0 2 0 0 0 0
+63	31236 9 0 0 0 0 1 0 0 0 0
+64	31245 9 0 0 0 0 1 0 0 0 0
+65	31254 9 0 0 0 0 1 0 0 0 0
+66	31263 27 0 0 0 0 3 0 2 2 4
+67	31290 9 0 0 0 0 1 0 0 0 0
+68	31299 27 0 0 0 0 3 0 2 2 4
+69	31326 9 0 0 0 0 1 0 0 0 0
+70	31335 27 0 0 0 0 3 0 2 2 4
+71	31362 9 0 0 0 0 1 0 0 0 0
+72	31371 27 0 0 0 0 3 0 2 2 4
+73	31398 9 0 0 0 0 1 0 0 0 0
+74	31407 27 0 0 0 0 3 0 2 2 4
+75	31434 9 0 0 0 0 1 0 0 0 0
+76	31443 27 0 0 0 0 3 0 2 2 4
+77	31470 9 0 0 0 0 1 0 0 0 0
+78	31479 27 0 0 0 0 3 0 2 2 4
+79	31506 9 0 0 0 0 1 0 0 0 0
+80	31515 27 0 0 0 0 3 0 2 2 4
+81	31542 9 0 0 0 0 1 0 0 0 0
+82	31551 27 0 0 0 0 3 0 2 2 4
+83	31578 9 0 0 0 0 1 0 0 0 0
+84	31587 27 0 0 0 0 3 0 2 2 4
+85	31614 9 0 0 0 0 1 0 0 0 0
+86	31623 27 0 0 0 0 3 0 2 2 4
+87	31650 9 0 0 0 0 1 0 0 0 0
+88	31659 9 0 0 0 0 1 1 1 1 1
+89	31668 18 0 0 0 0 2 0 0 0 0
+90	31686 9 0 0 0 0 1 1 1 1 1
+91	31695 18 0 0 0 0 2 0 0 0 0
+92	31713 9 0 0 0 0 1 1 1 1 1
+93	31722 18 0 0 0 0 2 0 0 0 0
+94	31740 9 0 0 0 0 1 1 1 1 1
+95	31749 18 0 0 0 0 2 0 0 0 0
+96	31767 9 0 0 0 0 1 1 1 1 1
+97	31776 18 0 0 0 0 2 0 0 0 0
+98	31794 9 0 0 0 0 1 1 1 1 1
+99	31803 18 0 0 0 0 2 0 0 0 0
+100	31821 10 0 0 0 0 1 1 1 1 1
+101	31831 20 0 0 0 0 2 0 0 0 0
+102	31851 10 0 0 0 0 1 1 1 1 1
+103	31861 20 0 0 0 0 2 0 0 0 0
+104	31881 10 0 0 0 0 1 1 1 1 1
+105	31891 20 0 0 0 0 2 0 0 0 0
+106	31911 10 0 0 0 0 1 1 1 1 1
+107	31921 20 0 0 0 0 2 0 0 0 0
+108	31941 10 0 0 0 0 1 1 1 1 1
+109	31951 20 0 0 0 0 2 0 0 0 0
+110	31971 11 0 0 0 0 1 31 31 31 961
+111	31982 11 0 0 0 0 1 31 31 31 961
+112	31993 11 0 0 0 0 1 31 31 31 961
+113	32004 11 0 0 0 0 1 31 31 31 961
+114	32015 11 0 0 0 0 1 31 31 31 961
+115	32026 11 0 0 0 0 1 31 31 31 961
+116	32037 11 0 0 0 0 1 31 31 31 961
+117	32048 11 0 0 0 0 1 31 31 31 961
+118	32059 11 0 0 0 0 1 31 31 31 961
+119	32070 11 0 0 0 0 1 31 31 31 961
+120	32081 11 0 0 0 0 1 31 31 31 961
+

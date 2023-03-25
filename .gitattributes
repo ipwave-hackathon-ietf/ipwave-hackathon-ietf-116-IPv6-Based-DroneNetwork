@@ -1,0 +1,2 @@
+*.psd filter=lfs diff=lfs merge=lfs -text
+out/clang-debug/src/libsimu5g_dbg.so filter=lfs diff=lfs merge=lfs -text

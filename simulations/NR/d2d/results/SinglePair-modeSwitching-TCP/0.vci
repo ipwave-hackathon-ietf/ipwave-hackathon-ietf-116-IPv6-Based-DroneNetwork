@@ -1,0 +1,971 @@
+file 761534 1677545637                                          
+version 3
+run SinglePair-modeSwitching-TCP-0-20230228-09:48:03-219223
+attr configname SinglePair-modeSwitching-TCP
+attr datetime 20230228-09:48:03
+attr datetimef 20230228-094803
+attr experiment SinglePair-modeSwitching-TCP
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network simu5g.simulations.NR.networks.SingleCell_Standalone_D2D
+attr processid 219223
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config extends SinglePair-modeSwitching
+config *.ueD2D*[0].numApps 1
+config *.ueD2DTx[0].app[0].typename TcpSessionApp
+config *.ueD2DTx[0].app[0].connectPort 1000
+config *.ueD2DTx[0].app[0].localPort 1000
+config *.ueD2DTx[0].app[0].sendBytes 1GiB
+config *.ueD2DTx[0].app[0].active true
+config *.ueD2DTx[0].app[0].tOpen uniform(0.010s,0.1s)
+config *.ueD2DTx[0].app[0].tSend uniform(0.15s,0.5s)
+config *.ueD2DTx[0].app[0].connectAddress "\"ueD2DRx[0]\""
+config *.ueD2DTx[0].app[0].localAddress "\"ueD2DTx[0]\""
+config *.ueD2DRx[0].app[0].typename TcpSinkApp
+config *.ueD2DRx[0].app[0].localPort 1000
+config **.app[*].tClose -1s
+config network simu5g.simulations.NR.networks.SingleCell_Standalone_D2D
+config sim-time-limit 50s
+config warmup-period 0s
+config **.vector-recording true
+config **.cellularNic.channelModel[0].fading false
+config **.cellularNic.channelModel[0].shadowing false
+config *.gnb.mobility.initialX 300m
+config *.gnb.mobility.initialY 300m
+config *.numUeCell 0
+config *.numUeD2DTx 1
+config *.numUeD2DRx 1
+config *.ue*[0].macCellId 0
+config *.ue*[0].masterId 0
+config *.ue*[0].nrMacCellId 1
+config *.ue*[0].nrMasterId 1
+config *.ue*[0].mobility.initFromDisplayString false
+config *.ue*[0].mobility.typename LinearMobility
+config *.ue*[0].mobility.speed 10mps
+config *.ueD2DTx[0].mobility.initialX 290m
+config *.ueD2DTx[0].mobility.initialY 400m
+config *.ueD2DTx[0].mobility.constraintAreaMinX 200m
+config *.ueD2DTx[0].mobility.constraintAreaMaxX 290m
+config *.ueD2DTx[0].mobility.initialMovementHeading 180deg
+config *.ueD2DRx[0].mobility.initialX 310m
+config *.ueD2DRx[0].mobility.initialY 400m
+config *.ueD2DRx[0].mobility.constraintAreaMinX 310m
+config *.ueD2DRx[0].mobility.constraintAreaMaxX 400m
+config *.ueD2DRx[0].mobility.initialMovementHeading 0deg
+config *.ueD2D*[*].cellularNic.d2dInitialMode true
+config **.usePreconfiguredTxParams false
+config **.gnb.cellularNic.phy.enableD2DCqiReporting true
+config **.amcMode "\"D2D\""
+config *.gnb.cellularNic.d2dModeSelectionType "\"D2DModeSelectionBestCqi\""
+config image-path ../../images
+config sim-time-limit 20s
+config warmup-period 0s
+config repeat 3
+config **.routingRecorder.enabled false
+config output-scalar-file results/SinglePair-modeSwitching-TCP/0.sca
+config output-vector-file results/SinglePair-modeSwitching-TCP/0.vec
+config seed-set 0
+config **.vector-recording false
+config **.mobility.constraintAreaMaxX 1000m
+config **.mobility.constraintAreaMaxY 1000m
+config **.mobility.constraintAreaMinX 0m
+config **.mobility.constraintAreaMinY 0m
+config **.mobility.constraintAreaMinZ 0m
+config **.mobility.constraintAreaMaxZ 0m
+config **.mobility.initFromDisplayString false
+config **.numBands 50
+config **.ueTxPower 26
+config **.eNodeBTxPower 40
+config **.targetBler 0.01
+config **.blerShift 5
+config *.configurator.config "xmldoc(\"./demo.xml\")"
+
+vector 0 SingleCell_Standalone_D2D.server.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 1 SingleCell_Standalone_D2D.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 2 SingleCell_Standalone_D2D.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 3 SingleCell_Standalone_D2D.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 4 SingleCell_Standalone_D2D.router.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 5 SingleCell_Standalone_D2D.router.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 6 SingleCell_Standalone_D2D.upf.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 7 SingleCell_Standalone_D2D.upf.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 8 SingleCell_Standalone_D2D.upf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 9 SingleCell_Standalone_D2D.upf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 10 SingleCell_Standalone_D2D.upf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 11 SingleCell_Standalone_D2D.iUpf.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 12 SingleCell_Standalone_D2D.iUpf.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 13 SingleCell_Standalone_D2D.iUpf.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 14 SingleCell_Standalone_D2D.iUpf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 15 SingleCell_Standalone_D2D.iUpf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 16 SingleCell_Standalone_D2D.iUpf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 17 SingleCell_Standalone_D2D.gnb.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 18 SingleCell_Standalone_D2D.gnb.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 19 SingleCell_Standalone_D2D.gnb.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 20 SingleCell_Standalone_D2D.gnb.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 21 SingleCell_Standalone_D2D.gnb.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 22 SingleCell_Standalone_D2D.ueD2DTx[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 23 SingleCell_Standalone_D2D.ueD2DTx[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 24 SingleCell_Standalone_D2D.ueD2DTx[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 25 SingleCell_Standalone_D2D.ueD2DRx[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 26 SingleCell_Standalone_D2D.ueD2DRx[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 27 SingleCell_Standalone_D2D.ueD2DRx[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 28 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 29 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrPhy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 30 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 31 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrPhy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 32 SingleCell_Standalone_D2D.gnb.cellularNic.mac avgServedBlocksUl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksUl
+attr title "Avg Served Blocks Ul"
+attr unit blocks
+vector 33 SingleCell_Standalone_D2D.gnb.cellularNic.mac avgServedBlocksDl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksDl
+attr title "Avg Served Blocks Dl"
+attr unit blocks
+vector 34 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrChannelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 35 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrChannelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 36 SingleCell_Standalone_D2D.gnb.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 37 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrChannelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 38 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrChannelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 39 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 40 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 41 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 42 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 43 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.pdcpRrc receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 44 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.pdcpRrc sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 45 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 46 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 47 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 48 SingleCell_Standalone_D2D.gnb.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 49 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 50 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrPhy averageCqiUl:vector ETV
+attr recordingmode vector
+attr source averageCqiUl
+attr title "Average Cqi reported in UL"
+attr unit cqi
+vector 51 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrChannelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 52 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac macDelayUl:vector ETV
+attr recordingmode vector
+attr source macDelayUl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 53 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_1st_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Ul (1st tx)"
+attr unit ""
+vector 54 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRateUl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateUl
+attr title "Harq Error Rate Ul"
+attr unit ""
+vector 55 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqTxAttemptsUl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsUl
+attr title "Harq Tx Attempts Ul"
+attr unit ""
+vector 56 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 57 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 58 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 59 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrPhy averageCqiD2D:vector ETV
+attr recordingmode vector
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D"
+attr unit cqi
+vector 60 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 61 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 62 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac macDelayD2D:vector ETV
+attr recordingmode vector
+attr source macDelayD2D
+attr title "Delay at the MAC layer D2D"
+attr unit s
+vector 63 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 64 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 65 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 66 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 67 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 68 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 69 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 70 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 71 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 72 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPduPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 73 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 74 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 75 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-6 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 76 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-6 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 77 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-6 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 78 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-21 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 79 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-21 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 80 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-21 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 81 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-21 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 82 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-21 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 83 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.pdcpRrc receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 84 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.pdcpRrc sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 85 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 86 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 87 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_1st_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D (1st Tx)"
+attr unit ""
+vector 88 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRateD2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D"
+attr unit ""
+vector 89 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrPhy averageCqiUl:vector ETV
+attr recordingmode vector
+attr source averageCqiUl
+attr title "Average Cqi reported in UL"
+attr unit cqi
+vector 90 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrChannelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 91 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac macDelayUl:vector ETV
+attr recordingmode vector
+attr source macDelayUl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 92 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_1st_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Ul (1st tx)"
+attr unit ""
+vector 93 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRateUl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateUl
+attr title "Harq Error Rate Ul"
+attr unit ""
+vector 94 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqTxAttemptsUl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsUl
+attr title "Harq Tx Attempts Ul"
+attr unit ""
+vector 95 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 96 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrRlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 97 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrPhy averageCqiD2D:vector ETV
+attr recordingmode vector
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D"
+attr unit cqi
+vector 98 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac macDelayD2D:vector ETV
+attr recordingmode vector
+attr source macDelayD2D
+attr title "Delay at the MAC layer D2D"
+attr unit s
+vector 99 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 100 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 101 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 102 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcThroughputD2D:vector ETV
+attr recordingmode vector
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D"
+attr unit Bps
+vector 103 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 104 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 105 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcDelayD2D:vector ETV
+attr recordingmode vector
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D"
+attr unit s
+vector 106 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 107 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrRlc.um rlcPduPacketLossD2D:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss"
+attr unit ""
+vector 108 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 109 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 110 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 111 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 112 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 113 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 sndWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 114 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_1st_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D (1st Tx)"
+attr unit ""
+vector 115 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRateD2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D"
+attr unit ""
+vector 116 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-21 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 117 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-21 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 118 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-21 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 119 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-21 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 120 SingleCell_Standalone_D2D.ueD2DTx[0].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 121 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 sndNxt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 122 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 unacked:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 123 SingleCell_Standalone_D2D.ueD2DRx[0].tcp.conn-21 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 124 SingleCell_Standalone_D2D.ueD2DRx[0].app[0].thread_21 packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 125 SingleCell_Standalone_D2D.ueD2DRx[0].app[0].thread_21 endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 126 SingleCell_Standalone_D2D.ueD2DRx[0].app[0] packetReceived:vector(packetBytes) ETV
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 127 SingleCell_Standalone_D2D.ueD2DRx[0].app[0] endToEndDelay:vector ETV
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 128 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 rtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 129 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 srtt:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 130 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 rttvar:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 131 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 rto:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 132 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 cwnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 133 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 ssthresh:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 134 SingleCell_Standalone_D2D.ueD2DTx[0].tcp.conn-20 dupAcks:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 135 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrMac harqErrorRate_2nd_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D (2nd Tx)"
+attr unit ""
+vector 136 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrMac harqErrorRate_2nd_D2D:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D (2nd Tx)"
+attr unit ""
+0	30631 8 0 0 0 0 1 0 0 0 0
+1	30639 8 0 0 0 0 1 0 0 0 0
+2	30647 8 0 0 0 0 1 0 0 0 0
+3	30655 8 0 0 0 0 1 0 0 0 0
+4	30663 8 0 0 0 0 1 0 0 0 0
+5	30671 8 0 0 0 0 1 0 0 0 0
+6	30679 8 0 0 0 0 1 0 0 0 0
+7	30687 8 0 0 0 0 1 0 0 0 0
+8	30695 8 0 0 0 0 1 0 0 0 0
+9	30703 8 0 0 0 0 1 0 0 0 0
+10	30711 9 0 0 0 0 1 0 0 0 0
+11	30720 9 0 0 0 0 1 0 0 0 0
+12	30729 9 0 0 0 0 1 0 0 0 0
+13	30738 9 0 0 0 0 1 0 0 0 0
+14	30747 9 0 0 0 0 1 0 0 0 0
+15	30756 9 0 0 0 0 1 0 0 0 0
+16	30765 9 0 0 0 0 1 0 0 0 0
+17	30774 9 0 0 0 0 1 0 0 0 0
+18	30783 9 0 0 0 0 1 0 0 0 0
+19	30792 9 0 0 0 0 1 0 0 0 0
+20	30801 9 0 0 0 0 1 0 0 0 0
+21	30810 9 0 0 0 0 1 0 0 0 0
+22	30819 9 0 0 0 0 1 0 0 0 0
+23	30828 9 0 0 0 0 1 0 0 0 0
+24	30837 9 0 0 0 0 1 0 0 0 0
+25	30846 9 0 0 0 0 1 0 0 0 0
+26	30855 9 0 0 0 0 1 0 0 0 0
+27	30864 9 0 0 0 0 1 0 0 0 0
+28	30873 9 0 0 0 0 1 0 0 0 0
+29	30882 9 0 0 0 0 1 1 1 1 1
+30	30891 9 0 0 0 0 1 0 0 0 0
+31	30900 9 0 0 0 0 1 1 1 1 1
+32	30909 30706 11 30158 0.001 1.868 1868 0 49 6093 249193
+33	61615 30601 11 30158 0.001 1.868 1868 0 0 0 0
+34	92216 9430 23 30165 0.002 1.868 312 43.138881247323 43.694960443008 13559.646875205 589316.5305616
+35	101646 9430 23 30165 0.002 1.868 312 55.138881247323 55.694960443008 17303.646875205 959676.05556653
+36	111076 18157 24 30166 0.002 1.868 1107 1 2 1269 1593
+37	129233 9430 25 30167 0.002 1.868 312 43.138881247323 43.694792318787 13559.646367869 589316.48622662
+38	138663 9430 25 30167 0.002 1.868 312 55.138881247323 55.694792318787 17303.646367869 959675.99905547
+39	148093 8408 393 29491 0.052847558425 1.83 507 0 0 0 0
+40	156501 10454 393 29491 0.052847558425 1.83 508 7504 24255 12304789 298326957691
+41	166955 9929 393 29491 0.052847558425 1.83 507 7504 7504 3804528 28549178112
+42	176884 10432 393 29491 0.052847558425 1.83 507 0 16751 8476006 141981576506
+43	187316 9420 396 29533 0.052847558425 1.83 507 40 576 290964 167550416
+44	196736 9420 396 29533 0.052847558425 1.83 507 41 577 291471 168132851
+45	206156 9420 397 29547 0.052847558425 1.83 507 41 577 291471 168132851
+46	215576 10870 399 29717 0.052847558425 1.842 583 43 7103 584108 1997025172
+47	226446 6384 402 30135 0.053 1.866 367 1 7105 519864 3374669064
+48	232830 12660 416 30158 0.054 1.868 763 1 1 763 763
+49	245490 10015 428 30116 0.055 1.863 599 1 578 23200 12846018
+50	255505 1438 448 29688 0.057 1.84 82 15 15 1230 18450
+51	256943 6075 456 29800 0.058 1.848 199 23.375113944615 43.692761984024 7135.5067994381 265560.57522338
+52	263018 1686 480 29735 0.061 1.844 82 0.004 0.004 0.328 0.001312
+53	264704 1356 503 29757 0.062 1.845 82 0 0 0 0
+54	266060 1356 503 29757 0.062 1.845 82 0 0 0 0
+55	267416 1356 503 29757 0.062 1.845 82 1 1 82 82
+56	268772 1980 508 29713 0.063 1.842 115 1 576 20330 11428030
+57	270752 1262 510 29715 0.063 1.842 76 0 0 0 0
+58	272014 1450 510 29715 0.063 1.842 76 43 7103 291623 1827724409
+59	273464 2070 517 29785 0.063 1.847 117 15 15 1755 26325
+60	275534 8325 527 30157 0.064 1.867 483 1 7105 519898 3374668934
+61	283859 7343 550 30101 0.067 1.862 437 1 578 23118 12846096
+62	291202 1534 550 29825 0.067 1.851 76 0.004 0.012 0.564 0.00496
+63	292736 2105 550 30095 0.067 1.862 116 1 7103 291663 1827724449
+64	294841 1448 554 29829 0.067 1.851 76 43 7103 291623 1827724409
+65	296289 1260 554 29829 0.067 1.851 76 0 0 0 0
+66	297549 1534 554 29829 0.067 1.851 76 0.004 0.012 0.564 0.00496
+67	299083 15534 554 29829 0.067 1.851 507 671.64179104478 157466.77471637 55010283.609194 6843184766970.4
+68	314617 8500 554 29829 0.067 1.851 507 0 0 0 0
+69	323117 8500 554 29829 0.067 1.851 507 0 0 0 0
+70	331617 10546 554 29829 0.067 1.851 507 0.014152441575 0.024 10.261308444891 0.21014368403242
+71	342163 9512 554 29829 0.067 1.851 507 41 577 291471 168132851
+72	351675 1269 554 29829 0.067 1.851 76 0 0 0 0
+73	352944 9512 555 29843 0.067 1.851 507 41 577 291471 168132851
+74	362456 9512 555 29843 0.067 1.851 507 40 576 290964 167550416
+75	371968 19 558 558 0.067 0.067 1 13211 13211 13211 174530521
+76	371987 15 558 558 0.067 0.067 1 0 0 0 0
+77	372002 15 558 558 0.067 0.067 1 0 0 0 0
+78	372017 10886 558 29885 0.067 1.851 507 20716 291396 78985052 15424976127152
+79	382903 36 558 909 0.067 0.097 2 7504 7504 15008 112620032
+80	382939 16955 558 29885 0.067 1.851 1011 0 0 0 0
+81	399894 10003 558 29885 0.067 1.851 506 7504 7504 3797024 28492868096
+82	409897 10853 558 29885 0.067 1.851 506 13212 283892 75167312 14267943087904
+83	420750 8991 561 29941 0.067 1.851 506 40 44 20244 809936
+84	429741 8991 561 29941 0.067 1.851 506 41 45 20750 850930
+85	438732 8991 562 29955 0.067 1.851 506 41 45 20750 850930
+86	447723 9725 564 30099 0.067 1.862 546 43 576 42592 12695684
+87	457448 1257 585 29789 0.068 1.847 76 0 1 41 41
+88	458705 1939 585 29995 0.068 1.852 117 0 1 41 41
+89	460644 1407 621 30086 0.072 1.861 80 15 15 1200 18000
+90	462051 3755 631 30115 0.073 1.863 123 25.670208056905 55.643371458339 5083.4425679118 212566.46416584
+91	465806 1648 655 30123 0.076 1.865 80 0.004 0.004 0.32 0.00128
+92	467454 1327 674 30142 0.077 1.866 80 0 0 0 0
+93	468781 1327 674 30142 0.077 1.866 80 0 0 0 0
+94	470108 1327 674 30142 0.077 1.866 80 1 1 80 80
+95	471435 657 685 30097 0.078 1.862 40 0 0 0 0
+96	472092 734 685 30097 0.078 1.862 40 43 576 20830 11759730
+97	472826 750 690 30102 0.078 1.862 43 15 15 645 9675
+98	473576 799 723 29431 0.082 1.83 39 0.004 0.012 0.18 0.001008
+99	474375 718 727 29435 0.082 1.83 39 43 576 20254 11427954
+100	475093 682 727 29435 0.082 1.83 39 0 0 0 0
+101	475775 838 727 29435 0.082 1.83 39 0.004 0.012 0.18 0.001008
+102	476613 15451 727 29435 0.082 1.83 492 169.9604743083 11025.136612022 3725282.3733706 32310207383.609
+103	492064 8643 727 29435 0.082 1.83 492 0 0 0 0
+104	500707 8643 727 29435 0.082 1.83 492 0 0 0 0
+105	509350 10611 727 29435 0.082 1.83 492 0.006 0.023 7.6579999999999 0.121898
+106	519961 9135 727 29435 0.082 1.83 492 41 45 20176 827396
+107	529096 682 727 29435 0.082 1.83 39 0 0 0 0
+108	529778 9135 728 29449 0.082 1.83 492 41 45 20176 827396
+109	538913 9135 728 29449 0.082 1.83 492 40 44 19684 787536
+110	548048 10611 731 29491 0.082 1.83 492 16750 16751 8241491 138053198991
+111	558659 10941 731 29491 0.082 1.83 492 13212 276388 71241600 13167076677568
+112	569600 8643 731 29491 0.082 1.83 492 0 0 0 0
+113	578243 10119 731 29491 0.082 1.83 492 7504 7504 3691968 27704527872
+114	588362 708 757 30157 0.083 1.867 40 0 1 4 4
+115	589070 762 757 30157 0.083 1.867 43 0 1 4 4
+116	589832 11358 909 29885 0.097 1.851 506 13212 283356 74896632 14187522977184
+117	601190 11015 909 29885 0.097 1.851 506 16751 16751 8476006 141981576506
+118	612205 10001 909 29885 0.097 1.851 506 0 536 270680 145084480
+119	622206 16 909 909 0.097 0.097 1 0 0 0 0
+120	622222 35 3713 3713 0.476843996684 0.476843996684 1 1073741824 1073741824 1073741824 1.1529215046068e+18
+121	622257 11237 3714 29491 0.476843996684 1.83 505 13212 283356 74883420 14187348420240
+122	633494 20224 3714 29491 0.476843996684 1.83 983 0 7504 7015704 50602880960
+123	653718 8975 3877 29885 0.491 1.851 505 0 0 0 0
+124	662693 9985 3878 29912 0.491 1.851 505 536 536 270680 145084480
+125	672678 15540 3878 29912 0.491 1.851 505 0.014156003316 1.374156003316 368.56678167458 340.56882899002
+126	688218 9985 3878 29912 0.491 1.851 505 536 536 270680 145084480
+127	698203 15540 3878 29912 0.491 1.851 505 0.014156003316 1.374156003316 368.56678167458 340.56882899002
+128	713743 821 4053 29478 0.506 1.83 38 0.029156003316 0.044 1.353156003316 0.048642072529363
+129	714564 1153 4053 29478 0.506 1.83 38 0.003644500415 0.037299651293 1.094190684662 0.034445169867109
+130	715717 1158 4053 29478 0.506 1.83 38 0.007548185007 0.659894500415 5.505196125703 1.9410589293419
+131	716875 770 4053 29478 0.506 1.83 38 1 2.643222502075 44.224463107022 57.328039230453
+132	717645 10880 4053 29491 0.506 1.83 491 1072 263712 65004472 11440014387264
+133	728525 13046 4053 29491 0.506 1.83 491 4294967295 4294967295 2108828941845 9.0573513359737e+21
+134	741571 8627 4053 29491 0.506 1.83 491 0 0 0 0
+135	750198 723 4348 29995 0.53 1.852 41 0 0 0 0
+136	750921 54 14594 28160 1.065 1.759 3 0 0 0 0
+vector 137 SingleCell_Standalone_D2D.server.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 138 SingleCell_Standalone_D2D.server.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 139 SingleCell_Standalone_D2D.router.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 140 SingleCell_Standalone_D2D.router.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 141 SingleCell_Standalone_D2D.router.ppp[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 142 SingleCell_Standalone_D2D.router.ppp[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 143 SingleCell_Standalone_D2D.upf.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 144 SingleCell_Standalone_D2D.upf.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 145 SingleCell_Standalone_D2D.upf.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 146 SingleCell_Standalone_D2D.upf.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 147 SingleCell_Standalone_D2D.iUpf.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 148 SingleCell_Standalone_D2D.iUpf.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 149 SingleCell_Standalone_D2D.iUpf.ppp[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 150 SingleCell_Standalone_D2D.iUpf.ppp[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 151 SingleCell_Standalone_D2D.iUpf.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 152 SingleCell_Standalone_D2D.iUpf.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 153 SingleCell_Standalone_D2D.gnb.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 154 SingleCell_Standalone_D2D.gnb.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 155 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 156 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+137	755453 304 30167 30167 0.1 1.868 19 0 0 0 0
+138	755757 304 30167 30167 0.1 1.868 19 0 0 0 0
+139	756061 304 30167 30167 0.1 1.868 19 0 0 0 0
+140	756365 304 30167 30167 0.1 1.868 19 0 0 0 0
+141	756669 304 30167 30167 0.1 1.868 19 0 0 0 0
+142	756973 304 30167 30167 0.1 1.868 19 0 0 0 0
+143	757277 304 30167 30167 0.1 1.868 19 0 0 0 0
+144	757581 304 30167 30167 0.1 1.868 19 0 0 0 0
+145	757885 304 30167 30167 0.1 1.868 19 0 0 0 0
+146	758189 304 30167 30167 0.1 1.868 19 0 0 0 0
+147	758493 304 30167 30167 0.1 1.868 19 0 0 0 0
+148	758797 304 30167 30167 0.1 1.868 19 0 0 0 0
+149	759101 304 30167 30167 0.1 1.868 19 0 0 0 0
+150	759405 304 30167 30167 0.1 1.868 19 0 0 0 0
+151	759709 304 30167 30167 0.1 1.868 19 0 0 0 0
+152	760013 304 30167 30167 0.1 1.868 19 0 0 0 0
+153	760317 304 30167 30167 0.1 1.868 19 0 0 0 0
+154	760621 304 30167 30167 0.1 1.868 19 0 0 0 0
+155	760925 304 30167 30167 0.1 1.868 19 0 0 0 0
+156	761229 304 30167 30167 0.1 1.868 19 0 0 0 0
+

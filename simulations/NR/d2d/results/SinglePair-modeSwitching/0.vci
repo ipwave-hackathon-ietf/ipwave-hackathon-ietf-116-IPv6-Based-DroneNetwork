@@ -1,0 +1,452 @@
+file 3399693 1677755682                                         
+version 3
+run SinglePair-modeSwitching-0-20230302-20:13:13-298927
+attr configname SinglePair-modeSwitching
+attr datetime 20230302-20:13:13
+attr datetimef 20230302-201313
+attr experiment SinglePair-modeSwitching
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network simu5g.simulations.NR.networks.SingleCell_Standalone_D2D
+attr processid 298927
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config network simu5g.simulations.NR.networks.SingleCell_Standalone_D2D
+config sim-time-limit 50s
+config warmup-period 0s
+config **.vector-recording true
+config **.cellularNic.channelModel[0].fading false
+config **.cellularNic.channelModel[0].shadowing false
+config *.gnb.mobility.initialX 300m
+config *.gnb.mobility.initialY 300m
+config *.numUeCell 0
+config *.numUeD2DTx 1
+config *.numUeD2DRx 1
+config *.ue*[0].macCellId 0
+config *.ue*[0].masterId 0
+config *.ue*[0].nrMacCellId 1
+config *.ue*[0].nrMasterId 1
+config *.ue*[0].mobility.initFromDisplayString false
+config *.ue*[0].mobility.typename LinearMobility
+config *.ue*[0].mobility.speed 10mps
+config *.ueD2DTx[0].mobility.initialX 290m
+config *.ueD2DTx[0].mobility.initialY 400m
+config *.ueD2DTx[0].mobility.constraintAreaMinX 200m
+config *.ueD2DTx[0].mobility.constraintAreaMaxX 290m
+config *.ueD2DTx[0].mobility.initialMovementHeading 180deg
+config *.ueD2DRx[0].mobility.initialX 310m
+config *.ueD2DRx[0].mobility.initialY 400m
+config *.ueD2DRx[0].mobility.constraintAreaMinX 310m
+config *.ueD2DRx[0].mobility.constraintAreaMaxX 400m
+config *.ueD2DRx[0].mobility.initialMovementHeading 0deg
+config *.ueD2D*[*].cellularNic.d2dInitialMode true
+config **.usePreconfiguredTxParams false
+config **.gnb.cellularNic.phy.enableD2DCqiReporting true
+config **.amcMode "\"D2D\""
+config *.gnb.cellularNic.d2dModeSelectionType "\"D2DModeSelectionBestCqi\""
+config image-path ../../images
+config sim-time-limit 20s
+config warmup-period 0s
+config repeat 3
+config **.routingRecorder.enabled false
+config output-scalar-file results/SinglePair-modeSwitching/0.sca
+config output-vector-file results/SinglePair-modeSwitching/0.vec
+config seed-set 0
+config **.vector-recording false
+config **.mobility.constraintAreaMaxX 1000m
+config **.mobility.constraintAreaMaxY 1000m
+config **.mobility.constraintAreaMinX 0m
+config **.mobility.constraintAreaMinY 0m
+config **.mobility.constraintAreaMinZ 0m
+config **.mobility.constraintAreaMaxZ 0m
+config **.mobility.initFromDisplayString false
+config **.numBands 50
+config **.ueTxPower 26
+config **.eNodeBTxPower 40
+config **.targetBler 0.01
+config **.blerShift 5
+config *.configurator.config "xmldoc(\"./demo.xml\")"
+
+vector 0 SingleCell_Standalone_D2D.server.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 1 SingleCell_Standalone_D2D.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 2 SingleCell_Standalone_D2D.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 3 SingleCell_Standalone_D2D.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 4 SingleCell_Standalone_D2D.router.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 5 SingleCell_Standalone_D2D.router.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 6 SingleCell_Standalone_D2D.upf.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 7 SingleCell_Standalone_D2D.upf.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 8 SingleCell_Standalone_D2D.upf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 9 SingleCell_Standalone_D2D.upf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 10 SingleCell_Standalone_D2D.upf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 11 SingleCell_Standalone_D2D.iUpf.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 12 SingleCell_Standalone_D2D.iUpf.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 13 SingleCell_Standalone_D2D.iUpf.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 14 SingleCell_Standalone_D2D.iUpf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 15 SingleCell_Standalone_D2D.iUpf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 16 SingleCell_Standalone_D2D.iUpf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 17 SingleCell_Standalone_D2D.gnb.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 18 SingleCell_Standalone_D2D.gnb.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 19 SingleCell_Standalone_D2D.gnb.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 20 SingleCell_Standalone_D2D.gnb.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 21 SingleCell_Standalone_D2D.gnb.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 22 SingleCell_Standalone_D2D.ueD2DTx[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 23 SingleCell_Standalone_D2D.ueD2DTx[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 24 SingleCell_Standalone_D2D.ueD2DTx[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 25 SingleCell_Standalone_D2D.ueD2DRx[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 26 SingleCell_Standalone_D2D.ueD2DRx[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 27 SingleCell_Standalone_D2D.ueD2DRx[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 28 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 29 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrPhy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 30 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 31 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrPhy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 32 SingleCell_Standalone_D2D.gnb.cellularNic.mac avgServedBlocksUl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksUl
+attr title "Avg Served Blocks Ul"
+attr unit blocks
+vector 33 SingleCell_Standalone_D2D.gnb.cellularNic.mac avgServedBlocksDl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksDl
+attr title "Avg Served Blocks Dl"
+attr unit blocks
+vector 34 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrChannelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 35 SingleCell_Standalone_D2D.ueD2DTx[0].cellularNic.nrChannelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 36 SingleCell_Standalone_D2D.gnb.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 37 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrChannelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 38 SingleCell_Standalone_D2D.ueD2DRx[0].cellularNic.nrChannelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+32	11480 593822 10 240987 0.001 32.768 32768 0 0 0 0
+33	605302 593822 10 240987 0.001 32.768 32768 0 0 0 0
+vector 39 SingleCell_Standalone_D2D.server.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 40 SingleCell_Standalone_D2D.server.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 41 SingleCell_Standalone_D2D.router.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 42 SingleCell_Standalone_D2D.router.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 43 SingleCell_Standalone_D2D.router.ppp[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 44 SingleCell_Standalone_D2D.router.ppp[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 45 SingleCell_Standalone_D2D.upf.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 46 SingleCell_Standalone_D2D.upf.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 47 SingleCell_Standalone_D2D.upf.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 48 SingleCell_Standalone_D2D.upf.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 49 SingleCell_Standalone_D2D.iUpf.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 50 SingleCell_Standalone_D2D.iUpf.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 51 SingleCell_Standalone_D2D.iUpf.ppp[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 52 SingleCell_Standalone_D2D.iUpf.ppp[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 53 SingleCell_Standalone_D2D.iUpf.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 54 SingleCell_Standalone_D2D.iUpf.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 55 SingleCell_Standalone_D2D.gnb.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 56 SingleCell_Standalone_D2D.gnb.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 57 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 58 SingleCell_Standalone_D2D.gnb.pppMEHostIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+0	1203582 8 0 0 0 0 1 0 0 0 0
+1	1203590 8 0 0 0 0 1 0 0 0 0
+2	1203598 8 0 0 0 0 1 0 0 0 0
+3	1203606 8 0 0 0 0 1 0 0 0 0
+4	1203614 8 0 0 0 0 1 0 0 0 0
+5	1203622 8 0 0 0 0 1 0 0 0 0
+6	1203630 8 0 0 0 0 1 0 0 0 0
+7	1203638 8 0 0 0 0 1 0 0 0 0
+8	1203646 8 0 0 0 0 1 0 0 0 0
+9	1203654 8 0 0 0 0 1 0 0 0 0
+10	1203662 9 0 0 0 0 1 0 0 0 0
+11	1203671 9 0 0 0 0 1 0 0 0 0
+12	1203680 9 0 0 0 0 1 0 0 0 0
+13	1203689 9 0 0 0 0 1 0 0 0 0
+14	1203698 9 0 0 0 0 1 0 0 0 0
+15	1203707 9 0 0 0 0 1 0 0 0 0
+16	1203716 9 0 0 0 0 1 0 0 0 0
+17	1203725 9 0 0 0 0 1 0 0 0 0
+18	1203734 9 0 0 0 0 1 0 0 0 0
+19	1203743 9 0 0 0 0 1 0 0 0 0
+20	1203752 9 0 0 0 0 1 0 0 0 0
+21	1203761 9 0 0 0 0 1 0 0 0 0
+22	1203770 9 0 0 0 0 1 0 0 0 0
+23	1203779 9 0 0 0 0 1 0 0 0 0
+24	1203788 9 0 0 0 0 1 0 0 0 0
+25	1203797 9 0 0 0 0 1 0 0 0 0
+26	1203806 9 0 0 0 0 1 0 0 0 0
+27	1203815 9 0 0 0 0 1 0 0 0 0
+28	1203824 9 0 0 0 0 1 0 0 0 0
+29	1203833 9 0 0 0 0 1 1 1 1 1
+30	1203842 9 0 0 0 0 1 0 0 0 0
+31	1203851 9 0 0 0 0 1 1 1 1 1
+32	1203860 325475 240997 367718 32.769 50 17232 0 0 0 0
+33	1529335 325475 240997 367718 32.769 50 17232 0 0 0 0
+34	1854810 268569 22 367724 0.002 50 8334 37.897273971446 43.694960443008 343045.51986952 14146284.646407
+35	2123379 268569 22 367724 0.002 50 8334 49.897273971446 55.694960443008 443053.51986952 23579473.123276
+36	2391948 304586 23 367727 0.002 50 16668 1 1 16668 16668
+37	2696534 268569 24 367726 0.002 50 8334 37.897273971446 43.694960443008 343045.51986952 14146284.646407
+38	2965103 268569 24 367726 0.002 50 8334 49.897273971446 55.694960443008 443053.51986952 23579473.123276
+39	3233672 8301 367728 367728 0.1 50 500 0 0 0 0
+40	3241973 8301 367728 367728 0.1 50 500 0 0 0 0
+41	3250274 8301 367728 367728 0.1 50 500 0 0 0 0
+42	3258575 8301 367728 367728 0.1 50 500 0 0 0 0
+43	3266876 8301 367728 367728 0.1 50 500 0 0 0 0
+44	3275177 8301 367728 367728 0.1 50 500 0 0 0 0
+45	3283478 8301 367728 367728 0.1 50 500 0 0 0 0
+46	3291779 8301 367728 367728 0.1 50 500 0 0 0 0
+47	3300080 8301 367728 367728 0.1 50 500 0 0 0 0
+48	3308381 8301 367728 367728 0.1 50 500 0 0 0 0
+49	3316682 8301 367728 367728 0.1 50 500 0 0 0 0
+50	3324983 8301 367728 367728 0.1 50 500 0 0 0 0
+51	3333284 8301 367728 367728 0.1 50 500 0 0 0 0
+52	3341585 8301 367728 367728 0.1 50 500 0 0 0 0
+53	3349886 8301 367728 367728 0.1 50 500 0 0 0 0
+54	3358187 8301 367728 367728 0.1 50 500 0 0 0 0
+55	3366488 8301 367728 367728 0.1 50 500 0 0 0 0
+56	3374789 8301 367728 367728 0.1 50 500 0 0 0 0
+57	3383090 8301 367728 367728 0.1 50 500 0 0 0 0
+58	3391391 8301 367728 367728 0.1 50 500 0 0 0 0
+

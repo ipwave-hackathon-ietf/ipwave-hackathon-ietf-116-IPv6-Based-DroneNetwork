@@ -1,0 +1,70 @@
+version 3
+run DualConnectivity-0-20230307-21:31:43-495979
+attr configname DualConnectivity
+attr datetime 20230307-21:31:43
+attr datetimef 20230307-213143
+attr experiment DualConnectivity
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network simu5g.simulations.NR.networks.SingleCell_withSecondaryGnb
+attr processid 495979
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config network simu5g.simulations.NR.networks.SingleCell_withSecondaryGnb
+config sim-time-limit 20s
+config description "Base configuration, do not run this config!"
+config *.masterEnb.mobility.initialX 300m
+config *.masterEnb.mobility.initialY 300m
+config *.secondaryGnb.mobility.initialX 600m
+config *.secondaryGnb.mobility.initialY 300m
+config *.masterEnb.nicType "\"LteNicEnbD2D\""
+config *.masterEnb.cellularNic.LtePdcpRrcType "\"NRPdcpRrcEnb\""
+config *.secondaryGnb.masterId 1
+config **.dualConnectivityEnabled true
+config *.*nb.numX2Apps 1
+config *.*nb.x2App[*].server.localPort "5000 + ancestorIndex(1)"
+config *.masterEnb.x2App[0].client.connectAddress "\"secondaryGnb%x2ppp0\""
+config *.secondaryGnb.x2App[0].client.connectAddress "\"masterEnb%x2ppp0\""
+config *.numUe 1
+config *.ue[0].macCellId 1
+config *.ue[0].masterId 1
+config *.ue[0].nrMacCellId 2
+config *.ue[0].nrMasterId 2
+config *.ue[0].mobility.initialX 450m
+config *.ue[0].mobility.initialY 350m
+config image-path ../../../images
+config output-scalar-file-append false
+config sim-time-limit 20s
+config seed-set 0
+config output-scalar-file results/DualConnectivity/-0.sca
+config output-vector-file results/DualConnectivity/-0.vec
+config **.vector-recording false
+config **.sctp.**.scalar-recording false
+config **.sctp.**.vector-recording false
+config **.routingRecorder.enabled false
+config **.mobility.constraintAreaMaxX 1000m
+config **.mobility.constraintAreaMaxY 1000m
+config **.mobility.constraintAreaMinX 0m
+config **.mobility.constraintAreaMinY 0m
+config **.mobility.constraintAreaMinZ 0m
+config **.mobility.constraintAreaMaxZ 0m
+config **.mobility.initFromDisplayString false
+config **.numBands 50
+config **.ueTxPower 26
+config **.eNodeBTxPower 40
+config **.targetBler 0.01
+config **.blerShift 5
+config **.sctp.nagleEnabled false
+config **.sctp.enableHeartbeats false
+config *.configurator.config "xmldoc(\"./demo.xml\")"
+
+scalar SingleCell_withSecondaryGnb.masterEnb.x2App[0].client ums 1452
+scalar SingleCell_withSecondaryGnb.secondaryGnb.x2App[0].client ums 1452
+

@@ -1,0 +1,371 @@
+file 17078 1679743484                                           
+version 3
+run D2DMulticast-0-20230324-10:51:32-394481
+attr configname D2DMulticast
+attr datetime 20230324-10:51:32
+attr datetimef 20230324-105132
+attr experiment D2DMulticast
+attr inifile omnetpp.ini
+attr iterationvars $cqi=7
+attr iterationvarsd cqi=7
+attr iterationvarsf cqi=7-
+attr measurement $cqi=7
+attr network simu5g.simulations.NR.carsdronesipv6.HighwayNet
+attr processid 394481
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+itervar cqi 7
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config **.amcMode "\"D2D\""
+config **.enableD2DCqiReporting false
+config **.usePreconfiguredTxParams true
+config **.d2dCqi 7
+config *.car[*].numApps 1
+config *.car[0..4].ipv6.configurator.mcastGroups "\"10:A1:00:00:02:01\""
+config *.car[0].app[*].typename AlertSender
+config *.car[0].app[*].localPort 3088+ancestorIndex(0)
+config *.car[0].app[*].startTime uniform(0s,0.02s)
+config *.car[0].app[*].destAddress "\"10:AE:00:00:00:02\""
+config *.car[0].app[*].destPort 1000
+config *.car[1..3].app[*].typename AlertReceiver
+config *.car[1..3].app[*].localPort 1000
+config *.car[4..7].ipv6.configurator.mcastGroups "\"10:AA:00:00:A2:01\""
+config *.car[4].app[*].typename AlertSender
+config *.car[4].app[*].localPort 3088+ancestorIndex(0)
+config *.car[4].app[*].startTime uniform(0s,0.02s)
+config *.car[4].app[*].destAddress "\"10:AA:00:00:A1:02\""
+config *.car[4].app[*].destPort 1000
+config *.car[5..7].app[*].typename AlertReceiver
+config *.car[5..7].app[*].localPort 1000
+config **.numdrones 2
+config **.drone*.mobility.typename StationaryMobility
+config **.drone[*0].mobility.initialX 200m
+config **.drone[*0].mobility.initialY 200m
+config **.drone[*0].mobility.initialZ 80m
+config **.drone[*1].mobility.initialX 0m
+config **.drone[*1].mobility.initialY 200m
+config **.drone[*1].mobility.initialZ 80m
+config cmdenv-express-mode true
+config cmdenv-autoflush true
+config image-path ../../images
+config network simu5g.simulations.NR.carsdronesipv6.HighwayNet
+config debug-on-errors false
+config print-undisposed false
+config sim-time-limit 100s
+config **.sctp.**.scalar-recording false
+config **.sctp.**.vector-recording false
+config **.routingRecorder.enabled false
+config *.playgroundSizeX 20000m
+config *.playgroundSizeY 20000m
+config *.playgroundSizeZ 50m
+config *.veinsManager.host "\"localhost\""
+config *.veinsManager.moduleType "\"simu5g.nodes.cars.NRCar\""
+config *.veinsManager.moduleName "\"car\""
+config *.veinsManager.launchConfig "xmldoc(\"heterogeneous.launchd.xml\")"
+config *.veinsManager.updateInterval 0.1s
+config *.car[*].mobility.typename VeinsInetMobility
+config **.numBands 25
+config **.ueTxPower 26
+config **.eNodeBTxPower 46
+config *.car[*].cellularNic.nrPhy.dynamicCellAssociation true
+config *.car[*].masterId 0
+config *.car[*].macCellId 0
+config *.car[*].nrMasterId 1
+config *.car[*].nrMacCellId 1
+config *.drone[*].cellularNic.nrPhy.dynamicCellAssociation true
+config *.drone[*].masterId 0
+config *.drone[*].macCellId 0
+config *.drone[*].nrMasterId 1
+config *.drone[*].nrMacCellId 1
+config **.gNodeB1.macCellId 1
+config **.gNodeB1.macNodeId 1
+config **.gNodeB2.macCellId 2
+config **.gNodeB2.macNodeId 2
+config *.car[*].cellularNic.nrPhy.enableHandover true
+config *.gNodeB*.cellularNic.phy.enableHandover true
+config *.gNodeB*.cellularNic.phy.handoverLatency 50ms
+config *.gNodeB*.cellInfo.broadcastMessageInterval 1s
+config *.drone[*].cellularNic.nrPhy.enableHandover true
+config **.routingTableFile "xmldoc(\"rt.xml\")"
+config **.forwarding false
+config **.gNodeB1.cellularNic.address "\"10:AA:00:00:00:01\""
+config **.gNodeB2.cellularNic.address "\"10:AA:00:00:A1:01\""
+
+vector 0 HighwayNet.server.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 1 HighwayNet.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 2 HighwayNet.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 3 HighwayNet.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 4 HighwayNet.router.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 5 HighwayNet.router.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 6 HighwayNet.upf.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 7 HighwayNet.upf.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 8 HighwayNet.upf.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 9 HighwayNet.upf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 10 HighwayNet.upf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 11 HighwayNet.upf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 12 HighwayNet.gNodeB1.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 13 HighwayNet.gNodeB1.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 14 HighwayNet.gNodeB1.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 15 HighwayNet.gNodeB1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 16 HighwayNet.gNodeB1.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 17 HighwayNet.gNodeB1.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 18 HighwayNet.gNodeB2.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 19 HighwayNet.gNodeB2.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 20 HighwayNet.gNodeB2.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 21 HighwayNet.gNodeB2.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 22 HighwayNet.gNodeB2.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 23 HighwayNet.gNodeB2.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 24 HighwayNet.drone[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 25 HighwayNet.drone[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 26 HighwayNet.drone[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 27 HighwayNet.drone[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 28 HighwayNet.drone[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 29 HighwayNet.drone[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 30 HighwayNet.drone[0].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 31 HighwayNet.drone[0].cellularNic.nrChannelModel[0] distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 32 HighwayNet.drone[0].cellularNic.nrPhy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 33 HighwayNet.drone[1].cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 34 HighwayNet.drone[1].cellularNic.nrChannelModel[0] distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 35 HighwayNet.drone[1].cellularNic.nrPhy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 36 HighwayNet.gNodeB1.cellularNic.mac avgServedBlocksUl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksUl
+attr title "Avg Served Blocks Ul"
+attr unit blocks
+vector 37 HighwayNet.gNodeB1.cellularNic.mac avgServedBlocksDl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksDl
+attr title "Avg Served Blocks Dl"
+attr unit blocks
+vector 38 HighwayNet.gNodeB2.cellularNic.mac avgServedBlocksUl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksUl
+attr title "Avg Served Blocks Ul"
+attr unit blocks
+vector 39 HighwayNet.gNodeB2.cellularNic.mac avgServedBlocksDl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksDl
+attr title "Avg Served Blocks Dl"
+attr unit blocks
+vector 40 HighwayNet.drone[0].cellularNic.nrChannelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 41 HighwayNet.drone[0].cellularNic.nrChannelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 42 HighwayNet.gNodeB1.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 43 HighwayNet.drone[1].cellularNic.nrChannelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 44 HighwayNet.drone[1].cellularNic.nrChannelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 45 HighwayNet.gNodeB1.cellularNic.pdcpRrc receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+0	13164 8 0 0 0 0 1 0 0 0 0
+1	13172 8 0 0 0 0 1 0 0 0 0
+2	13180 8 0 0 0 0 1 0 0 0 0
+3	13188 8 0 0 0 0 1 0 0 0 0
+4	13196 8 0 0 0 0 1 0 0 0 0
+5	13204 8 0 0 0 0 1 0 0 0 0
+6	13212 8 0 0 0 0 1 0 0 0 0
+7	13220 8 0 0 0 0 1 0 0 0 0
+8	13228 8 0 0 0 0 1 0 0 0 0
+9	13236 8 0 0 0 0 1 0 0 0 0
+10	13244 9 0 0 0 0 1 0 0 0 0
+11	13253 9 0 0 0 0 1 0 0 0 0
+12	13262 9 0 0 0 0 1 0 0 0 0
+13	13271 9 0 0 0 0 1 0 0 0 0
+14	13280 9 0 0 0 0 1 0 0 0 0
+15	13289 9 0 0 0 0 1 0 0 0 0
+16	13298 9 0 0 0 0 1 0 0 0 0
+17	13307 9 0 0 0 0 1 0 0 0 0
+18	13316 9 0 0 0 0 1 0 0 0 0
+19	13325 9 0 0 0 0 1 0 0 0 0
+20	13334 9 0 0 0 0 1 0 0 0 0
+21	13343 9 0 0 0 0 1 0 0 0 0
+22	13352 9 0 0 0 0 1 0 0 0 0
+23	13361 9 0 0 0 0 1 0 0 0 0
+24	13370 9 0 0 0 0 1 0 0 0 0
+25	13379 9 0 0 0 0 1 0 0 0 0
+26	13388 9 0 0 0 0 1 0 0 0 0
+27	13397 9 0 0 0 0 1 0 0 0 0
+28	13406 9 0 0 0 0 1 0 0 0 0
+29	13415 9 0 0 0 0 1 0 0 0 0
+30	13424 9 0 0 0 0 1 0 0 0 0
+31	13433 94 0 20 0 0 4 178.75122377203 472.74728978599 1302.9970271161 510884
+32	13527 9 0 0 0 0 1 1 1 1 1
+33	13536 9 0 0 0 0 1 0 0 0 0
+34	13545 94 0 22 0 0 4 178.75122377203 472.74728978599 1302.9970271161 510884
+35	13639 9 0 0 0 0 1 1 1 1 1
+36	13648 603 25 397 0.001 0.041 41 0 0 0 0
+37	14251 603 25 397 0.001 0.041 41 0 0 0 0
+38	14854 603 26 398 0.001 0.041 41 0 0 0 0
+39	15457 603 26 398 0.001 0.041 41 0 0 0 0
+40	16060 200 41 377 0.002 0.038 7 25.477780465695 25.477780465695 178.34446325986 4543.8210822069
+41	16260 200 41 377 0.002 0.038 7 47.374435129118 47.374435129118 331.62104590383 15710.359726621
+42	16460 205 42 380 0.002 0.038 14 1 1 14 14
+43	16665 193 43 379 0.002 0.038 7 29.05837854662 29.05837854662 203.40864982634 5910.7255463107
+44	16858 193 43 379 0.002 0.038 7 40.62769871119 40.62769871119 284.39389097833 11554.26931797
+45	17051 26 408 408 0.041458585542 0.041458585542 1 104 104 104 10816
+

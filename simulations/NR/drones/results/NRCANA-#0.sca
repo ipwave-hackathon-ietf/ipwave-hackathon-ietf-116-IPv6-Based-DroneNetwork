@@ -1,0 +1,98 @@
+version 3
+run NRCANA-0-20230220-22:02:18-1397284
+attr configname NRCANA
+attr datetime 20230220-22:02:18
+attr datetimef 20230220-220218
+attr experiment NRCANA
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network NRCANANetwork
+attr processid 1397284
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config network NRCANANetwork
+config **.numBands 25
+config **.ueTxPower 26
+config **.eNodeBTxPower 46
+config *.drone[*].cellularNic.nrPhy.dynamicCellAssociation true
+config *.drone[*].masterId 0
+config *.drone[*].macCellId 0
+config *.drone[*].nrMasterId 1
+config *.drone[*].nrMacCellId 1
+config **.gNodeB1.macCellId 1
+config **.gNodeB1.macNodeId 1
+config **.gNodeB2.macCellId 2
+config **.gNodeB2.macNodeId 2
+config *.drone[*].cellularNic.nrPhy.enableHandover true
+config *.gNodeB*.cellularNic.phy.enableHandover true
+config *.gNodeB*.cellularNic.phy.handoverLatency 50ms
+config *.gNodeB*.cellInfo.broadcastMessageInterval 1s
+config *.gNodeB*.numX2Apps 1
+config *.gNodeB*.x2App[*].server.localPort "5000 + ancestorIndex(1)"
+config *.gNodeB1.x2App[0].client.connectAddress "\"gNodeB2%x2ppp0\""
+config *.gNodeB2.x2App[0].client.connectAddress "\"gNodeB1%x2ppp0\""
+config **.sctp.nagleEnabled false
+config **.sctp.enableHeartbeats false
+config *.nbst 4
+config *.numdrones 10
+config **.dst*.mobility.typename StatNodeMob
+config **.dst[0].mobility.initialX 200m
+config **.dst[0].mobility.initialY 100m
+config **.dst[0].mobility.initialZ 0m
+config **.dst[1].mobility.initialX 100m
+config **.dst[1].mobility.initialY 250m
+config **.dst[1].mobility.initialZ 0m
+config **.dst[2].mobility.initialX 160m
+config **.dst[2].mobility.initialY 220m
+config **.dst[2].mobility.initialZ 0m
+config **.dst[3].mobility.initialX 200m
+config **.dst[3].mobility.initialY 330m
+config **.dst[3].mobility.initialZ 0m
+config **.dst[4].mobility.initialX 400m
+config **.dst[4].mobility.initialY 300m
+config **.dst[4].mobility.initialZ 0m
+config **.dst[5].mobility.initialX 400m
+config **.dst[5].mobility.initialY 200m
+config **.dst[5].mobility.initialZ 0m
+config **.dst[*].mobility.initFromDisplayString false
+config **.bstion*.mobility.typename StatNodeMob
+config **.bstion[0].mobility.initialX 200m
+config **.bstion[0].mobility.initialY 20m
+config **.bstion[0].mobility.initialZ 0m
+config **.bstion[1].mobility.initialX 20m
+config **.bstion[1].mobility.initialY 200m
+config **.bstion[1].mobility.initialZ 0m
+config **.bstion[2].mobility.initialX 480m
+config **.bstion[2].mobility.initialY 190m
+config **.bstion[2].mobility.initialZ 0m
+config **.bstion[3].mobility.initialX 200m
+config **.bstion[3].mobility.initialY 380m
+config **.bstion[3].mobility.initialZ 0m
+config **.bstion[*].mobility.initFromDisplayString false
+config **.drone*.mobility.typename DroneNetMob2
+config **.drone*.mobility.ndst 30
+config **.drone*.mobility.initFromDisplayString false
+config **.drone*.mobility.changeInterval "truncnormal(2s, 0.5s)"
+config *.drone[*].mobility.angleDelta "normal(0deg, 30deg)"
+config **.drone*.mobility.speed 5mps
+config **.drone[*].mobility.initFromDisplayString false
+config sim-time-limit 10day
+config debug-on-errors false
+config print-undisposed false
+config **.sctp.**.scalar-recording false
+config **.sctp.**.vector-recording false
+config **.routingRecorder.enabled false
+config *.playgroundSizeX 20000m
+config *.playgroundSizeY 20000m
+config *.playgroundSizeZ 50m
+
+scalar NRCANANetwork.gNodeB1.x2App[0].client ums 1452
+scalar NRCANANetwork.gNodeB2.x2App[0].client ums 1452
+

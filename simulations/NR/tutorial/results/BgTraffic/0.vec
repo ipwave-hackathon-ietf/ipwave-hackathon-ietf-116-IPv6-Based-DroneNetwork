@@ -1,0 +1,163 @@
+version 3
+run BgTraffic-0-20230221-21:24:02-27524
+attr configname BgTraffic
+attr datetime 20230221-21:24:02
+attr datetimef 20230221-212402
+attr experiment BgTraffic
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network simu5g.simulations.NR.networks.SingleCell_Standalone
+attr processid 27524
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config extends Single-UE
+config *.numBgCells 1
+config *.bgCell[*].bgScheduler.isNr true
+config *.bgCell[*].bgScheduler.txPower 23
+config *.bgCell[*].mobility.initialX 750m
+config *.bgCell[*].mobility.initialY 1000m
+config *.bgCell[*].bgTrafficGenerator.numBgUes 10
+config *.bgCell[*].bgTrafficGenerator.bgUE[*].mobility.initialX uniform(500m,1000m)
+config *.bgCell[*].bgTrafficGenerator.bgUE[*].mobility.initialY uniform(500m,1000m)
+config *.bgCell[*].bgTrafficGenerator.bgUE[*].trafficGeneratorType "\"TrafficGeneratorCbr\""
+config *.bgCell[*].bgTrafficGenerator.bgUE[*].generator.startTimeDl uniform(0s,0.05s)
+config *.bgCell[*].bgTrafficGenerator.bgUE[*].generator.packetSizeDl 1000B
+config *.bgCell[*].bgTrafficGenerator.bgUE[*].generator.periodDl 0.01s
+config *.gnb.mobility.initialX 500m
+config *.gnb.mobility.initialY 500m
+config *.numUe 1
+config *.ue[*].mobility.initialX 500m
+config *.ue[*].mobility.initialY 900m
+config *.ue[*].macCellId 0
+config *.ue[*].masterId 0
+config *.ue[*].nrMacCellId 1
+config *.ue[*].nrMasterId 1
+config *.ue[*].numApps 1
+config *.server.numApps 1
+config *.ue[*].app[*].typename CbrReceiver
+config *.ue[*].app[*].localPort 1000
+config *.server.app[*].typename CbrSender
+config *.server.app[*].PacketSize 1000
+config *.server.app[*].sampling_time 0.01s
+config *.server.app[*].destAddress "\"ue[\"+string(ancestorIndex(0))+\"]\""
+config *.server.app[*].destPort 1000
+config *.server.app[*].localPort 3088+ancestorIndex(0)
+config *.server.app[*].startTime uniform(0.01s,0.05s)
+config output-scalar-file-append false
+config network simu5g.simulations.NR.networks.SingleCell_Standalone
+config sim-time-limit 10s
+config warmup-period 1s
+config seed-set 0
+config output-scalar-file results/BgTraffic/0.sca
+config output-vector-file results/BgTraffic/0.vec
+config **.routingRecorder.enabled false
+config **.amcType "\"NRAmc\""
+config **.targetBler 0.01
+config **.blerShift 5
+config *.configurator.config "xmldoc(\"./demo.xml\")"
+config **.mobility.constraintAreaMaxX 1000m
+config **.mobility.constraintAreaMaxY 1000m
+config **.mobility.constraintAreaMinX 0m
+config **.mobility.constraintAreaMinY 0m
+config **.mobility.constraintAreaMinZ 0m
+config **.mobility.constraintAreaMaxZ 0m
+config **.mobility.initFromDisplayString false
+
+vector 0 SingleCell_Standalone.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 1 SingleCell_Standalone.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 2 SingleCell_Standalone.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 3 SingleCell_Standalone.upf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 4 SingleCell_Standalone.upf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 5 SingleCell_Standalone.upf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 6 SingleCell_Standalone.iUpf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 7 SingleCell_Standalone.iUpf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 8 SingleCell_Standalone.iUpf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 9 SingleCell_Standalone.gnb.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 10 SingleCell_Standalone.gnb.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 11 SingleCell_Standalone.gnb.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 12 SingleCell_Standalone.ue[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 13 SingleCell_Standalone.ue[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 14 SingleCell_Standalone.ue[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+0	0	1	0
+1	0	1	0
+2	0	1	0
+3	0	1	0
+4	0	1	0
+5	0	1	0
+6	0	1	0
+7	0	1	0
+8	0	1	0
+9	0	1	0
+10	0	1	0
+11	0	1	0
+12	0	1	0
+13	0	1	0
+14	0	1	0
+

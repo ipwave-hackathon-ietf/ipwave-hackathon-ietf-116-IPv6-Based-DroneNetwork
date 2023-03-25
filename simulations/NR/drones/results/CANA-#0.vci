@@ -1,0 +1,504 @@
+file 20322 1676899016                                           
+version 3
+run CANA-0-20230220-22:16:31-1398436
+attr configname CANA
+attr datetime 20230220-22:16:31
+attr datetimef 20230220-221631
+attr experiment CANA
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network CANANetwork
+attr processid 1398436
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../../../images:../../../../inet4.4/images:../../../../veins-veins-5.2/subprojects/veins_inet/images:../../../../veins-veins-5.2/images
+config network CANANetwork
+config *.nbst 4
+config *.numdrones 10
+config **.dst*.mobility.typename StatNodeMob
+config **.dst[0].mobility.initialX 200m
+config **.dst[0].mobility.initialY 100m
+config **.dst[0].mobility.initialZ 0m
+config **.dst[1].mobility.initialX 100m
+config **.dst[1].mobility.initialY 250m
+config **.dst[1].mobility.initialZ 0m
+config **.dst[2].mobility.initialX 160m
+config **.dst[2].mobility.initialY 220m
+config **.dst[2].mobility.initialZ 0m
+config **.dst[3].mobility.initialX 200m
+config **.dst[3].mobility.initialY 330m
+config **.dst[3].mobility.initialZ 0m
+config **.dst[4].mobility.initialX 400m
+config **.dst[4].mobility.initialY 300m
+config **.dst[4].mobility.initialZ 0m
+config **.dst[5].mobility.initialX 400m
+config **.dst[5].mobility.initialY 200m
+config **.dst[5].mobility.initialZ 0m
+config **.dst[*].mobility.initFromDisplayString false
+config **.bstion*.mobility.typename StatNodeMob
+config **.bstion[0].mobility.initialX 200m
+config **.bstion[0].mobility.initialY 20m
+config **.bstion[0].mobility.initialZ 0m
+config **.bstion[1].mobility.initialX 20m
+config **.bstion[1].mobility.initialY 200m
+config **.bstion[1].mobility.initialZ 0m
+config **.bstion[2].mobility.initialX 480m
+config **.bstion[2].mobility.initialY 190m
+config **.bstion[2].mobility.initialZ 0m
+config **.bstion[3].mobility.initialX 200m
+config **.bstion[3].mobility.initialY 380m
+config **.bstion[3].mobility.initialZ 0m
+config **.bstion[*].mobility.initFromDisplayString false
+config **.drone*.mobility.typename DroneNetMob2
+config **.drone*.mobility.ndst 30
+config **.drone*.mobility.initFromDisplayString false
+config **.drone*.mobility.changeInterval "truncnormal(2s, 0.5s)"
+config *.drone[*].mobility.angleDelta "normal(0deg, 30deg)"
+config **.drone*.mobility.speed 5mps
+config **.drone[*].mobility.initFromDisplayString false
+config sim-time-limit 10day
+config debug-on-errors false
+config print-undisposed false
+config **.sctp.**.scalar-recording false
+config **.sctp.**.vector-recording false
+config **.routingRecorder.enabled false
+config *.playgroundSizeX 20000m
+config *.playgroundSizeY 20000m
+config *.playgroundSizeZ 50m
+
+vector 0 CANANetwork.drone[0].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 1 CANANetwork.drone[0].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 2 CANANetwork.drone[0].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 3 CANANetwork.drone[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 4 CANANetwork.drone[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 5 CANANetwork.drone[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 6 CANANetwork.drone[1].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 7 CANANetwork.drone[1].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 8 CANANetwork.drone[1].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 9 CANANetwork.drone[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 10 CANANetwork.drone[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 11 CANANetwork.drone[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 12 CANANetwork.drone[2].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 13 CANANetwork.drone[2].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 14 CANANetwork.drone[2].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 15 CANANetwork.drone[2].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 16 CANANetwork.drone[2].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 17 CANANetwork.drone[2].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 18 CANANetwork.drone[3].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 19 CANANetwork.drone[3].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 20 CANANetwork.drone[3].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 21 CANANetwork.drone[3].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 22 CANANetwork.drone[3].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 23 CANANetwork.drone[3].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 24 CANANetwork.drone[4].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 25 CANANetwork.drone[4].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 26 CANANetwork.drone[4].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 27 CANANetwork.drone[4].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 28 CANANetwork.drone[4].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 29 CANANetwork.drone[4].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 30 CANANetwork.drone[5].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 31 CANANetwork.drone[5].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 32 CANANetwork.drone[5].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 33 CANANetwork.drone[5].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 34 CANANetwork.drone[5].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 35 CANANetwork.drone[5].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 36 CANANetwork.drone[6].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 37 CANANetwork.drone[6].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 38 CANANetwork.drone[6].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 39 CANANetwork.drone[6].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 40 CANANetwork.drone[6].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 41 CANANetwork.drone[6].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 42 CANANetwork.drone[7].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 43 CANANetwork.drone[7].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 44 CANANetwork.drone[7].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 45 CANANetwork.drone[7].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 46 CANANetwork.drone[7].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 47 CANANetwork.drone[7].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 48 CANANetwork.drone[8].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 49 CANANetwork.drone[8].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 50 CANANetwork.drone[8].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 51 CANANetwork.drone[8].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 52 CANANetwork.drone[8].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 53 CANANetwork.drone[8].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 54 CANANetwork.drone[9].wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 55 CANANetwork.drone[9].wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 56 CANANetwork.drone[9].wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 57 CANANetwork.drone[9].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 58 CANANetwork.drone[9].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 59 CANANetwork.drone[9].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 60 CANANetwork.gcs.wlan[0].mac.dcf frameSequenceActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(frameSequenceStarted)-count(frameSequenceFinished))
+attr title "frame sequence active"
+vector 61 CANANetwork.gcs.wlan[0].mac.dcf.channelAccess.inProgressFrames queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(count(packetEnqueued) - count(packetDequeued))"
+attr title "queue length"
+vector 62 CANANetwork.gcs.wlan[0].mac.dcf.channelAccess.contention backoffActive:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(count(backoffStarted)-count(backoffStopped))
+attr title "backoff active"
+vector 63 CANANetwork.gcs.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 64 CANANetwork.gcs.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 65 CANANetwork.gcs.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+0	19446 16 0 0 0 0 2 0 0 0 0
+1	19462 16 0 0 0 0 2 0 0 0 0
+2	19478 16 0 0 0 0 2 0 0 0 0
+3	19494 8 0 0 0 0 1 0 0 0 0
+4	19502 8 0 0 0 0 1 0 0 0 0
+5	19510 8 0 0 0 0 1 0 0 0 0
+6	19518 16 0 0 0 0 2 0 0 0 0
+7	19534 16 0 0 0 0 2 0 0 0 0
+8	19550 16 0 0 0 0 2 0 0 0 0
+9	19566 8 0 0 0 0 1 0 0 0 0
+10	19574 9 0 0 0 0 1 0 0 0 0
+11	19583 9 0 0 0 0 1 0 0 0 0
+12	19592 18 0 0 0 0 2 0 0 0 0
+13	19610 18 0 0 0 0 2 0 0 0 0
+14	19628 18 0 0 0 0 2 0 0 0 0
+15	19646 9 0 0 0 0 1 0 0 0 0
+16	19655 9 0 0 0 0 1 0 0 0 0
+17	19664 9 0 0 0 0 1 0 0 0 0
+18	19673 18 0 0 0 0 2 0 0 0 0
+19	19691 18 0 0 0 0 2 0 0 0 0
+20	19709 18 0 0 0 0 2 0 0 0 0
+21	19727 9 0 0 0 0 1 0 0 0 0
+22	19736 9 0 0 0 0 1 0 0 0 0
+23	19745 9 0 0 0 0 1 0 0 0 0
+24	19754 18 0 0 0 0 2 0 0 0 0
+25	19772 18 0 0 0 0 2 0 0 0 0
+26	19790 18 0 0 0 0 2 0 0 0 0
+27	19808 9 0 0 0 0 1 0 0 0 0
+28	19817 9 0 0 0 0 1 0 0 0 0
+29	19826 9 0 0 0 0 1 0 0 0 0
+30	19835 18 0 0 0 0 2 0 0 0 0
+31	19853 18 0 0 0 0 2 0 0 0 0
+32	19871 18 0 0 0 0 2 0 0 0 0
+33	19889 9 0 0 0 0 1 0 0 0 0
+34	19898 9 0 0 0 0 1 0 0 0 0
+35	19907 9 0 0 0 0 1 0 0 0 0
+36	19916 18 0 0 0 0 2 0 0 0 0
+37	19934 18 0 0 0 0 2 0 0 0 0
+38	19952 18 0 0 0 0 2 0 0 0 0
+39	19970 9 0 0 0 0 1 0 0 0 0
+40	19979 9 0 0 0 0 1 0 0 0 0
+41	19988 9 0 0 0 0 1 0 0 0 0
+42	19997 18 0 0 0 0 2 0 0 0 0
+43	20015 18 0 0 0 0 2 0 0 0 0
+44	20033 18 0 0 0 0 2 0 0 0 0
+45	20051 9 0 0 0 0 1 0 0 0 0
+46	20060 9 0 0 0 0 1 0 0 0 0
+47	20069 9 0 0 0 0 1 0 0 0 0
+48	20078 18 0 0 0 0 2 0 0 0 0
+49	20096 18 0 0 0 0 2 0 0 0 0
+50	20114 18 0 0 0 0 2 0 0 0 0
+51	20132 9 0 0 0 0 1 0 0 0 0
+52	20141 9 0 0 0 0 1 0 0 0 0
+53	20150 9 0 0 0 0 1 0 0 0 0
+54	20159 18 0 0 0 0 2 0 0 0 0
+55	20177 18 0 0 0 0 2 0 0 0 0
+56	20195 18 0 0 0 0 2 0 0 0 0
+57	20213 9 0 0 0 0 1 0 0 0 0
+58	20222 9 0 0 0 0 1 0 0 0 0
+59	20231 9 0 0 0 0 1 0 0 0 0
+60	20240 18 0 0 0 0 2 0 0 0 0
+61	20258 18 0 0 0 0 2 0 0 0 0
+62	20276 18 0 0 0 0 2 0 0 0 0
+63	20294 9 0 0 0 0 1 0 0 0 0
+64	20303 9 0 0 0 0 1 0 0 0 0
+65	20312 9 0 0 0 0 1 0 0 0 0
+
